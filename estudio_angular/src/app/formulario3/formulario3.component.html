@@ -1,0 +1,24 @@
+<div class="card">
+    <div class="card-body">
+        <form >
+            <div class="mb-2">
+                <label for="" class="form-label">Nombre:</label>
+                <input type="text" [formControl]="name" class="form-control" placeholder="Introduce su nombre">
+            </div>
+            <div class="mb-2">
+                <label for="" class="form-label">Email:</label>
+                <input type="text" [formControl]="email" class="form-control" placeholder="Introduce su email">
+            </div>
+
+            <button class="btn btn-primary">
+                Enviar
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- <p>Nombre: {{name.value}}</p>
+
+<br>
+
+<p>Email: {{email.value}}</p> -->

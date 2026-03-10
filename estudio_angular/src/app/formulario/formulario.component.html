@@ -1,0 +1,17 @@
+<div class="container">
+    <h2>Formulario</h2>
+
+    <input type="text" placeholder="Introduce tu nombre" class="form-control" #name>
+
+    <div class="alert alert-primary mt-3" *ngIf="openAlert; else mensaje">
+        <p>Se ha enviado el mensaje</p>
+        <button (click)="openAlert = false" class="btn btn-danger">Borrar</button>
+    </div>
+    <button class="btn btn-primary mt-3" (click)="mostrar_consola(name.value)">Mostrar en consola</button>
+</div>
+
+<ng-template #mensaje>
+    <div class="alert alert-danger mt-4">
+        Mensaje de prueba
+    </div>
+</ng-template>

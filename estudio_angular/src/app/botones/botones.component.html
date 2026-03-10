@@ -1,0 +1,9 @@
+<div class=" mx-2   ">
+    <button [ngClass]="{'disabled' : button_disabled}" (click)="text_color='text-danger'" class="btn btn-danger">Color rojo</button>
+    <button [ngClass]="{'disabled' : button_disabled}" (click)="text_color='text-success'" class="btn btn-success mx-3">Color verde</button>
+    <button [ngClass]="{'disabled' : button_disabled}" (click)="text_color='text-primary'" class="btn btn-primary">Color azul</button>
+</div>
+
+<h3 [class]="text_color">Texto que va a cambiar de color </h3>
+
+<button (click)="button_disabled =  !button_disabled" class="btn btn-secondary">Activar / Desactivar</button>
