@@ -1,22 +1,42 @@
 <div class="card">
     <div class="card-body">
-        <form >
+        <form [formGroup]="formUser" (ngSubmit)="procesar()">
             <div class="mb-2">
                 <label for="" class="form-label">Nombre:</label>
-                <input type="text" [formControl]="name" class="form-control" placeholder="Introduce su nombre">
-            </div>
-            <div class="mb-2">
-                <label for="" class="form-label">Email:</label>
-                <input type="text" [formControl]="email" class="form-control" placeholder="Introduce su email">
+                <input type="text" formControlName="name" class="form-control" placeholder="Introduce su nombre">
+
+                <div class="alert alert-danger mt-2" [hidden]="name.valid || name.pristine">
+                    El nombre es obligatorio
+                </div>
             </div>
 
-            <button class="btn btn-primary">
+
+            <div class="mb-2">
+                <label for="" class="form-label">Email:</label>
+                <input type="text" formControlName="email" class="form-control" placeholder="Introduce su email">
+
+                <div class="alert alert-danger mt-2" [hidden]="email.valid || email.pristine">
+
+                    <!-- Una forma de crear el if  -->
+                    @if (email?.errors?.['required']) {
+                    <span>
+                        El email es obligatorio
+                    </span>
+                    }
+
+                    <!-- Otra forma de crear el if -->
+                    <span *ngIf="email?.errors?.['email']">
+                        El email debe de ser válido
+                    </span>
+                </div>
+            </div>
+            <button class="btn btn-primary" [disabled]="formUser.invalid">
                 Enviar
             </button>
         </form>
     </div>
 </div>
-
+<p>{{formUser.get('name')?.value }}</p>
 <!-- <p>Nombre: {{name.value}}</p>
 
 <br>
