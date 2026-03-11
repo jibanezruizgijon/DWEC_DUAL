@@ -1,0 +1,10 @@
+<form (ngSubmit)="addMensaje()">
+    <label for="" class="form-label">Introduce tu mensaje</label>
+    <input type="text" class="form-control" placeholder="introduce tu mensaje" name="mensaje" [(ngModel)]="mensaje">
+    <button class="btn btn-primary mt-4">Agregar</button>
+</form>
+
+
+{{mensaje}}
+<br>
+{{ mensajesService.mensajes | json}}
