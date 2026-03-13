@@ -18,7 +18,8 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 });
 
-Route::get('/viajes', [ViajeController::class, 'index']);
-    Route::post('/viajes', [ViajeController::class, 'store']);
-    Route::delete('/viajes/{id}', [ViajeController::class, 'destroy']);
-    
+Route::apiResource('viajes', ViajeController::class)->only(['index', 'store', 'destroy']);
+
+// Route::get('/viajes', [ViajeController::class, 'index']);
+// Route::post('/viajes', [ViajeController::class, 'store']);
+// Route::delete('/viajes/{id}', [ViajeController::class, 'destroy']);

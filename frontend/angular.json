@@ -11,13 +11,16 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss",
-          "standalone": false
+          "standalone": false,
+          "skipTests": true
         },
         "@schematics/angular:directive": {
-          "standalone": false
+          "standalone": false,
+          "skipTests": true
         },
         "@schematics/angular:pipe": {
-          "standalone": false
+          "standalone": false,
+          "skipTests": true
         }
       },
       "root": "",

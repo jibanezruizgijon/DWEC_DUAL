@@ -54,7 +54,11 @@ class ViajeController extends Controller
      */
     public function show(Viaje $viaje)
     {
-        //
+        $viaje = $viaje->load('lugar');
+        return response ()->json([
+            'message' => 'Viaje encontrado',
+            'viaje' => $viaje
+        ] , 200);
     }
 
     /**
@@ -70,7 +74,7 @@ class ViajeController extends Controller
      */
     public function update(Request $request, Viaje $viaje)
     {
-        //
+        
     }
 
     /**
