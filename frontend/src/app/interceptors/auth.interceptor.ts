@@ -1,0 +1,23 @@
+import { Injectable } from '@angular/core';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable()
+export class AuthInterceptor implements HttpInterceptor {
+  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    // Busca el token que se guarda al hacer login
+    const token = localStorage.getItem('auth_token');
+
+    // Si lo tiene, lo pega en la cabecera 
+    if (token) {
+      request = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+    }
+
+    // Deja que la petición continúe su viaje hacia Laravel
+    return next.handle(request);
+  }
+}
