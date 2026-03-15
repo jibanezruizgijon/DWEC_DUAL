@@ -1,32 +1,50 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-login',
-  standalone: false,
+  selector: 'app-login', 
   templateUrl: './login.html',
-  styleUrl: './login.scss',
+  styleUrls: ['./login.scss'],
+  standalone: false
 })
 export class Login {
-  inicio = {
-    email: '',
-    password: ''
-  };
+  
+  private fb = inject(FormBuilder);
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
-  mensajeError = '';
+  mensajeDeError = '';
 
-  constructor(private authService: AuthService, private router: Router) { }
+  // Creamos el formulario reactivo
+  formLogin = this.fb.group({
+    'email': ["", [Validators.required, Validators.email]],
+    'password': ["", Validators.required]
+  });
+
+  get email() { return this.formLogin.get('email') as FormControl; }
+  get password() { return this.formLogin.get('password') as FormControl; }
 
   iniciarSesion() {
-    this.authService.login(this.inicio).subscribe({
-      next: (respuesta) => {
-        // El AuthService ya guarda el token automáticamente gracias al 'tap' que pusimos
-        alert('¡Bienvenido!');
-        this.router.navigate(['/viajes']); // Después del login, vamos a ver los viajes
+    if (this.formLogin.invalid) {
+      return;
+    }
+
+    this.authService.login(this.formLogin.value).subscribe({
+      next: () => {
+        // Redirección directa a los viajes
+        this.router.navigate(['/viajes']); 
       },
-      error: (error) => {
-        this.mensajeError = 'Email o contraseña incorrectos';
+      error: (err) => {
+        // Capturamos los errores
+        if (err.status === 401) {
+          this.mensajeDeError = 'Correo o contraseña incorrectos.';
+        } else if (err.status === 429) {
+          this.mensajeDeError = 'Demasiados intentos. Espera un minuto.';
+        } else {
+          this.mensajeDeError = 'Error al intentar iniciar sesión.';
+        }
       }
     });
   }

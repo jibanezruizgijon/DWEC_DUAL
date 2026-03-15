@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ViajesService } from '../../services/viajes.service';
 
 @Component({
   selector: 'app-viajes',
@@ -6,4 +7,11 @@ import { Component } from '@angular/core';
   templateUrl: './viajes.html',
   styleUrl: './viajes.scss',
 })
-export class Viajes {}
+export class Viajes {
+
+  private viajesService = inject(ViajesService);
+
+  viajes$ = this.viajesService.obtenerViajes();
+  
+
+}
