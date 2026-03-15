@@ -5,11 +5,12 @@ import { App } from './app';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { Login } from './components/login/login';
-import { Register } from './components/register/register';
 import { FormsModule } from '@angular/forms';
+import { Registro } from './components/registro/registro';
+import { Viajes } from './components/viajes/viajes';
 
 @NgModule({
-  declarations: [App, Login, Register],
+  declarations: [App, Login, Registro, Viajes],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [
     provideBrowserGlobalErrorListeners(),

@@ -19,6 +19,9 @@ export class AuthService {
     );
   }
 
+  registro(datos: any) {
+    return this.http.post(`${this.apiUrl}/register`, datos);
+  }
   logout() {
     // Borra el token al cerrar sesión
     localStorage.removeItem('auth_token');

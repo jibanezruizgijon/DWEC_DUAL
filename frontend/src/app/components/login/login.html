@@ -1,1 +1,33 @@
-<p>login works!</p>
+<div class="row justify-content-center mt-5">
+  <div class="col-md-6 col-lg-4">
+    <div class="card shadow-sm">
+      <div class="card-body p-4">
+        <h3 class="text-center mb-4">Iniciar Sesión</h3>
+
+        @if (mensajeError) {
+          <div class="alert alert-danger">
+            {{ mensajeError }}
+          </div>
+        }
+
+        <form (ngSubmit)="iniciarSesion()">
+          <div class="mb-3">
+            <label class="form-label">Correo Electrónico</label>
+            <input type="email" class="form-control" name="email" [(ngModel)]="inicio.email" required>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label">Contraseña</label>
+            <input type="password" class="form-control" name="password" [(ngModel)]="inicio.password" required>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100">Entrar</button>
+        </form>
+
+        <div class="text-center mt-3">
+          <p class="mb-0">¿No tienes cuenta? <a routerLink="/register">Regístrate aquí</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

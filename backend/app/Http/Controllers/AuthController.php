@@ -36,6 +36,7 @@ class AuthController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
+        // Comprueba que el usuario exista y que la contraseña coincida con la encriptada en la base de datos
         if (! $user || ! Hash::check($request->password, $user->password)) {
             return response()->json(['message' => 'Credenciales incorrectas'], 401);
         }

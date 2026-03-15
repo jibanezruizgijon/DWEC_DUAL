@@ -5,19 +5,20 @@ use App\Http\Controllers\ViajeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-// Rutas públicas
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
-
+// Rutas públicas con límite de uso de 20 peticiones por minuto
+Route::middleware('throttle:20,1')->group(function () {
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/login', [AuthController::class, 'login']);
+});
 // Rutas protegidas 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:sanctum', 'throttle:60,1')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
 
     Route::apiResource('viajes', ViajeController::class)->only(['index', 'store', 'destroy']);
 
-    Route::get('/lugares', function() {
+    Route::get('/lugares', function () {
         return \App\Models\Lugar::all();
     });
 });

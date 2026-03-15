@@ -14,9 +14,9 @@ class ViajeController extends Controller
      */
     public function index()
     {
-        /** @var User $user */
-        $user = Auth::user();
-        return $user->viajes()->with('lugar')->get();
+        return Viaje::with('lugar')
+            ->where('user_id', Auth::id())
+            ->get();
     }
 
     /**
@@ -55,10 +55,10 @@ class ViajeController extends Controller
     public function show(Viaje $viaje)
     {
         $viaje = $viaje->load('lugar');
-        return response ()->json([
+        return response()->json([
             'message' => 'Viaje encontrado',
             'viaje' => $viaje
-        ] , 200);
+        ], 200);
     }
 
     /**
@@ -72,19 +72,14 @@ class ViajeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Viaje $viaje)
-    {
-        
-    }
+    public function update(Request $request, Viaje $viaje) {}
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy($id)
     {
-        /** @var User $user */
-        $user = Auth::user();
-        $viaje = $user->viajes()->findOrFail($id);
+        $viaje = Viaje::where('user_id', Auth::id())->findOrFail($id);
 
         // Solo se puede cancelar si la fecha del viaje es posterior a hoy
         if ($viaje->fecha_viaje <= now()->format('Y-m-d')) {
