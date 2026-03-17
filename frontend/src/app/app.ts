@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, HostListener, signal } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +8,22 @@ import { Component, signal } from '@angular/core';
 })
 export class App {
   protected readonly title = signal('frontend');
+
+  mostrarBotonScroll = false;
+
+  // Escucha el scroll de la ventana
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    // Muestra el botón si baja más de 300px
+    this.mostrarBotonScroll = window.scrollY > 300;
+  }
+
+
+  subirArriba() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' 
+    });
+  }
+
 }

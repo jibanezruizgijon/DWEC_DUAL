@@ -36,11 +36,11 @@ export class Login {
         // Redirección directa a los viajes
         this.router.navigate(['/viajes']); 
       },
-      error: (err) => {
+      error: (error) => {
         // Capturamos los errores
-        if (err.status === 401) {
+        if (error.status === 401) {
           this.mensajeDeError = 'Correo o contraseña incorrectos.';
-        } else if (err.status === 429) {
+        } else if (error.status === 429) {
           this.mensajeDeError = 'Demasiados intentos. Espera un minuto.';
         } else {
           this.mensajeDeError = 'Error al intentar iniciar sesión.';

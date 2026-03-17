@@ -8,9 +8,10 @@ import { Login } from './components/login/login';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Registro } from './components/registro/registro';
 import { Viajes } from './components/viajes/viajes';
+import { Cabecera } from './components/cabecera/cabecera';
 
 @NgModule({
-  declarations: [App, Login, Registro, Viajes],
+  declarations: [App, Login, Registro, Viajes, Cabecera],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [
     provideBrowserGlobalErrorListeners(),

@@ -10,20 +10,24 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(credentials: any) {
-    // Llama a Laravel y si va bien, guarda el token en el navegador
-    return this.http.post(`${this.apiUrl}/login`, credentials).pipe(
-      tap((res: any) => {
-        localStorage.setItem('auth_token', res.token);
-      })
-    );
-  }
+login(credentials: any) {
+  return this.http.post(`${this.apiUrl}/login`, credentials).pipe(
+    tap((res: any) => {
+      // Cambia localStorage por sessionStorage
+      sessionStorage.setItem('auth_token', res.token);
+    })
+  );
+}
 
+estaLogueado(): boolean {
+  return !!sessionStorage.getItem('auth_token');
+}
+
+logout() {
+  sessionStorage.removeItem('auth_token');
+}
   registro(datos: any) {
     return this.http.post(`${this.apiUrl}/register`, datos);
   }
-  logout() {
-    // Borra el token al cerrar sesión
-    localStorage.removeItem('auth_token');
-  }
+  
 }

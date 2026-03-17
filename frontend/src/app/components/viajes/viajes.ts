@@ -17,6 +17,29 @@ export class Viajes implements OnInit{
   mensajeError = '';
   cargando = true;
   
+
+  // Comprueba si la fecha del viaje es anterior a hoy
+  viajePasado(fechaViaje: string): boolean {
+    const hoy = new Date();
+    // hoy.setHours(0, 0, 0, 0); 
+    const fecha = new Date(fechaViaje);
+    return fecha < hoy;
+  }
+  cancelar(id: number) {
+    if (confirm('¿Estás seguro de que quieres cancelar este viaje?')) {
+      this.viajesService.cancelarViaje(id).subscribe({
+        next: () => {
+          this.listaViajes = this.listaViajes.filter(viaje => viaje.id !== id);
+          this.cdr.detectChanges();
+        },
+        error: (err) => {
+          this.mensajeError = 'No se pudo cancelar el viaje.';
+          console.error(err);
+          this.cdr.detectChanges();
+        }
+      });
+    }
+  }
   ngOnInit(): void {
     this.viajesService.obtenerViajes().subscribe({
       next: (viajes) => {

@@ -57,11 +57,11 @@ export class Registro {
           }
         });
       },
-      error: (err) => {
+      error: (error) => {
         this.cargando = false;
 
-        if (err.status === 422 && err.error.errors) {
-          const errores = err.error.errors;
+        if (error.status === 422 && error.error.errors) {
+          const errores = error.error.errors;
           if (errores.email) {
             this.mensajeDeError = 'Ya existe una cuenta con este email.';
           } else {
