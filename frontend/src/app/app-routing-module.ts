@@ -4,12 +4,14 @@ import { Login } from './components/login/login';
 import { Registro } from './components/registro/registro';
 import { Viajes } from './components/viajes/viajes';
 import { Tiempo } from './components/tiempo/tiempo';
+import { Inicio } from './components/inicio/inicio';
 const routes: Routes = [
-  {path: 'login', component: Login},
-  {path: 'register', component: Registro},
-  {path: '', component: Login},
-  {path: 'viajes', component: Viajes},
-  {path: 'tiempo', component: Tiempo}
+  { path: 'login', component: Login },
+  { path: 'register', component: Registro },
+  { path: 'inicio', component: Inicio },
+  { path: 'viajes', component: Viajes },
+  { path: 'tiempo', component: Tiempo },
+  { path: '', redirectTo: '/inicio', pathMatch: 'full' }
 ];
 
 @NgModule({

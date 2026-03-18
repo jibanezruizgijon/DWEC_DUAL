@@ -1,0 +1,48 @@
+<div id="carruselPrincipal" class="carousel slide shadow mb-5" data-bs-ride="carousel">
+  <div class="carousel-inner rounded-4">
+    @for (img of imagenesCarrusel; track img.url; let first = $first) {
+      <div class="carousel-item" [class.active]="first">
+        <img [src]="img.url" class="d-block w-100" style="height: 450px; object-fit: cover;">
+        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
+          <h3>{{ img.titulo }}</h3>
+          <p>{{ img.desc }}</p>
+        </div>
+      </div>
+    }
+  </div>
+</div>
+
+<section class="mb-5">
+  <h3 class="fw-bold mb-4 border-start border-primary border-4 ps-3">Parques Temáticos</h3>
+  <div class="d-flex overflow-auto pb-3 gap-3" style="scrollbar-width: thin;">
+    @for (parque of parques; track parque.nombre) {
+      <div class="card flex-shrink-0" style="width: 250px;">
+        <img [src]="parque.imagen" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+          <h6 class="fw-bold mb-0">{{ parque.nombre }}</h6>
+        </div>
+      </div>
+    }
+  </div>
+</section>
+
+<section>
+  <h3 class="fw-bold mb-4 border-start border-success border-4 ps-3">Los Más Visitados</h3>
+  <div class="row">
+    @for (v of destacados; track v.ciudad) {
+      <div class="col-md-4 mb-4">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+            <span class="badge bg-warning text-dark mb-2">Top Ventas</span>
+            <h5 class="card-title fw-bold">{{ v.ciudad }}</h5>
+            <p class="text-muted small">Visto por {{ v.visitas }} personas este mes</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="text-primary fw-bold fs-4">desde {{ v.precio }}</span>
+              <button class="btn btn-sm btn-outline-primary">Ver oferta</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</section>

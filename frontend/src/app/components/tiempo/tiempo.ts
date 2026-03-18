@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { TiempoService } from '../../services/tiempo';
 
 @Component({
@@ -9,6 +9,7 @@ import { TiempoService } from '../../services/tiempo';
 })
 export class Tiempo implements OnInit {
 private tiempoService = inject(TiempoService);
+private cdr = inject(ChangeDetectorRef);
 
  ciudadesPrincipales = ['Madrid', 'Londres', 'Roma', 'París'];
   climaCiudades: any[] = [];
@@ -28,6 +29,7 @@ private tiempoService = inject(TiempoService);
       this.tiempoService.obtenerTiempo(ciudad).subscribe({
         next: (datos) => {
           this.climaCiudades.push(datos);
+          this.cdr.detectChanges();
         },
         error: (error) => console.error('Error al cargar el tiempo', error)
       });
@@ -44,9 +46,11 @@ buscarTiempo() {
       next: (datos) => {
         this.resultadoBusqueda = datos;
         this.buscando = false;
+        this.cdr.detectChanges();
       },
       error: (error) => {
         this.buscando = false;
+        this.cdr.detectChanges();
         if (error.status === 404) {
           this.mensajeError = 'No se ha encontrado ninguna ciudad con ese nombre.';
         } else {
@@ -58,7 +62,8 @@ buscarTiempo() {
 
   // Función para los colores dinámicos
   obtenerColorTemperatura(temp: number): string {
-    if (temp < 15) return 'bg-frio';
+    if  (temp < 5) return 'bg-congelado';
+    if  (temp >= 5 && temp < 15) return 'bg-frio';
     if (temp >= 15 && temp < 25) return 'bg-templado';
     return 'bg-calor';
   }

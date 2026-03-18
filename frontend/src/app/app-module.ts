@@ -10,9 +10,10 @@ import { Registro } from './components/registro/registro';
 import { Viajes } from './components/viajes/viajes';
 import { Cabecera } from './components/cabecera/cabecera';
 import { Tiempo } from './components/tiempo/tiempo';
+import { Inicio } from './components/inicio/inicio';
 
 @NgModule({
-  declarations: [App, Login, Registro, Viajes, Cabecera, Tiempo],
+  declarations: [App, Login, Registro, Viajes, Cabecera, Tiempo, Inicio],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [
     provideBrowserGlobalErrorListeners(),

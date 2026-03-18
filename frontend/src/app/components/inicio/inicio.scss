@@ -1,0 +1,11 @@
+section {
+  .d-flex.overflow-auto {
+    &::-webkit-scrollbar {
+      height: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #dee2e6;
+      border-radius: 10px;
+    }
+  }
+}
