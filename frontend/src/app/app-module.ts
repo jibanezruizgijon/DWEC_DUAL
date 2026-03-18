@@ -9,9 +9,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Registro } from './components/registro/registro';
 import { Viajes } from './components/viajes/viajes';
 import { Cabecera } from './components/cabecera/cabecera';
+import { Tiempo } from './components/tiempo/tiempo';
 
 @NgModule({
-  declarations: [App, Login, Registro, Viajes, Cabecera],
+  declarations: [App, Login, Registro, Viajes, Cabecera, Tiempo],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [
     provideBrowserGlobalErrorListeners(),

@@ -5,12 +5,12 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class Tiempo {
+export class TiempoService {
   private http = inject(HttpClient);
   
   // Sustituye por tu API Key real de OpenWeatherMap
   private apiKey = '29e59156c34a232cfcd1454009cd661c'; 
-  private urlBase = 'https://api.openweathermap.org/data/3.0/weather';
+  private urlBase = 'https://api.openweathermap.org/data/2.5/weather';
 
   // Obtenemos el tiempo de una ciudad (ej. Madrid) en sistema métrico (Celsius)
   obtenerTiempo(ciudad: string): Observable<any> {

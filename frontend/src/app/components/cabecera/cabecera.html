@@ -27,26 +27,28 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/viajes" routerLinkActive="active fw-bold">Mis Viajes</a>
+                    <a class="nav-link d-flex align-items-center" routerLink="/viajes"
+                        routerLinkActive="active fw-bold">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                            fill="currentColor" class="text-secondary me-2">
+                            <path
+                                d="M280-80v-40q-33 0-56.5-23.5T200-200v-440q0-33 23.5-56.5T280-720h80v-120q0-17 11.5-28.5T400-880h160q17 0 28.5 11.5T600-840v120h80q33 0 56.5 23.5T760-640v440q0 33-23.5 56.5T680-120v40h-80v-40H360v40h-80Zm160-640h80v-80h-80v80Zm143.5 226.5Q634-507 680-534v-106H280v106q46 27 96.5 40.5T480-480q53 0 103.5-13.5ZM440-360v-42q-42-5-82-15t-78-27v244h400v-244q-38 17-78 27t-82 15v42h-80Zm40 0Zm0-120Zm0 36Z" />
+                        </svg>
+                        Mis Viajes
+                    </a>
                 </li>
 
                 <li class="nav-item me-3 ms-2">
-                    @if (datosTiempo && datosTiempo.main) {
-                    <span class="badge bg-info text-dark p-2 d-flex align-items-center">
-                        <img [src]="'http://openweathermap.org/img/wn/' + datosTiempo.weather[0].icon + '.png'"
-                            alt="clima" width="30">
-
-                        <span class="ms-1">{{ datosTiempo.main?.temp | number:'1.0-0' }}°C</span>
-
-                        <small class="ms-2 d-none d-md-inline text-capitalize">
-                            {{ datosTiempo.weather[0]?.description }}
-                        </small>
-                    </span>
-                    } @else {
-                    <span class="badge bg-light text-muted p-2">Cargando clima...</span>
-                    }
+                    <a class="nav-link d-flex align-items-center" routerLink="/tiempo"
+                        routerLinkActive="active fw-bold">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                            fill="currentColor" class="text-secondary me-2">
+                            <path
+                                d="M440-760v-160h80v160h-80Zm266 110-55-55 112-115 56 57-113 113Zm54 210v-80h160v80H760ZM440-40v-160h80v160h-80ZM254-652 140-763l57-56 113 113-56 54Zm508 512L651-255l54-54 114 110-57 59ZM40-440v-80h160v80H40Zm157 300-56-57 112-112 29 27 29 28-114 114Zm113-170q-70-70-70-170t70-170q70-70 170-70t170 70q70 70 70 170t-70 170q-70 70-170 70t-170-70Zm283-57q47-47 47-113t-47-113q-47-47-113-47t-113 47q-47 47-47 113t47 113q47 47 113 47t113-47ZM480-480Z" />
+                        </svg>
+                        El Tiempo
+                    </a>
                 </li>
-
                 <li class="nav-item">
                     <button class="btn btn-outline-danger btn-sm ms-2" (click)="cerrarSesion()">
                         Cerrar Sesión

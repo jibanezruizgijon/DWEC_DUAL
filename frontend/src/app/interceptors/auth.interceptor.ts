@@ -8,14 +8,14 @@ export class AuthInterceptor implements HttpInterceptor {
     // Busca el token que se guarda al hacer login
     const token = localStorage.getItem('auth_token');
 
-    // Si lo tiene, lo pega en la cabecera 
-    if (token) {
-      request = request.clone({
-        setHeaders: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-    }
+    // solo lo pega si la petición no es de la API de clima
+   if (token && !request.url.includes('openweathermap')) {
+    request = request.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+  }
 
     // Deja que la petición continúe su viaje hacia Laravel
     return next.handle(request);
