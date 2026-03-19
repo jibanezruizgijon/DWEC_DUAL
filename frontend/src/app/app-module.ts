@@ -15,7 +15,7 @@ import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2
 
 @NgModule({
   declarations: [App, Login, Registro, Viajes, Cabecera, Tiempo, Inicio],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, BaseChartDirective],
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideHttpClient(withInterceptorsFromDi()),

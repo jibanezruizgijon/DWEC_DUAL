@@ -20,6 +20,9 @@ private cdr = inject(ChangeDetectorRef);
   mensajeError = '';
   buscando = false;
 
+  datosGrafico: any = null;
+  opcionesGrafico: any = null;
+
   ngOnInit() {
     this.cargarCiudades();
   }
@@ -41,12 +44,14 @@ buscarTiempo() {
     this.buscando = true;
     this.mensajeError = '';
     this.resultadoBusqueda = null;
+    this.datosGrafico = null; 
 
     this.tiempoService.obtenerTiempo(this.ciudadBuscada).subscribe({
       next: (datos) => {
         this.resultadoBusqueda = datos;
-        this.buscando = false;
-        this.cdr.detectChanges();
+        
+        // Si encuentra la ciudad, pide también los datos del gráfico
+        this.cargarPrevision(); 
       },
       error: (error) => {
         this.buscando = false;
@@ -59,19 +64,16 @@ buscarTiempo() {
       }
     });
   }
-
- // Función específica para preparar los datos del gráfico
+ // Función para preparar los datos del gráfico
   cargarPrevision() {
     this.tiempoService.obtenerPrevision(this.ciudadBuscada).subscribe({
       next: (datosPrevision) => {
-        // OpenWeather devuelve 40 resultados (1 cada 3 horas). 
-        // Filtramos para coger solo la temperatura de las 12:00 de cada día.
+        // Filtra para coger solo la temperatura de las 12:00 de cada día.
         const diasMediodia = datosPrevision.list.filter((item: any) => item.dt_txt.includes('12:00:00'));
 
-        // Extraemos las fechas y las temperaturas de ese filtro
+        // Extrae las fechas y las temperaturas de ese filtro
         const etiquetas = diasMediodia.map((item: any) => {
           const fecha = new Date(item.dt_txt);
-          // Devuelve ej: "19 Mar"
           return fecha.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' });
         });
         
@@ -84,9 +86,9 @@ buscarTiempo() {
             { 
               data: temperaturas, 
               label: 'Temperatura a las 12:00 (°C)', 
-              tension: 0.4, // Curva suave
-              borderColor: '#0d6efd', // Azul primario
-              backgroundColor: 'rgba(13, 110, 253, 0.2)', // Relleno semitransparente
+              tension: 0.4, 
+              borderColor: '#0d6efd', 
+              backgroundColor: 'rgba(13, 110, 253, 0.2)', 
               fill: true,
               pointBackgroundColor: '#0d6efd',
               pointRadius: 5
@@ -95,14 +97,14 @@ buscarTiempo() {
         };
 
         this.buscando = false;
-        this.cdr.detectChanges(); // Refrescamos la pantalla con todo listo
+        this.cdr.detectChanges();
       },
       error: (error) => {
         console.error('Error al cargar la previsión', error);
         this.buscando = false;
         this.cdr.detectChanges();
       }
-    });
+    }); 
   }
 
 

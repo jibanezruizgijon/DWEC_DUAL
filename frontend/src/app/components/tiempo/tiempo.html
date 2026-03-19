@@ -4,7 +4,6 @@
   <div class="row">
     @for (clima of climaCiudades; track clima.id; let i = $index) {
     <div class="col-md-6 col-lg-3 mb-4 fade-in">
-
       <div class="card h-100 border-0 shadow-sm text-center" [ngClass]="obtenerColorTemperatura(clima.main.temp)">
         <div class="card-body">
           <h4 class="card-title fw-bold text-capitalize">{{ clima.name }}</h4>
@@ -54,7 +53,8 @@
       @if (resultadoBusqueda) {
       <div class="row justify-content-center mt-4">
         <div class="col-md-8 col-lg-6">
-          <div class="card border-0 shadow" [ngClass]="obtenerColorTemperatura(resultadoBusqueda.main.temp)">
+          
+          <div class="card border-0 shadow mb-4" [ngClass]="obtenerColorTemperatura(resultadoBusqueda.main.temp)">
             <div class="card-body d-flex align-items-center justify-content-between p-4">
               <div class="text-start">
                 <h3 class="fw-bold text-capitalize mb-0">
@@ -73,31 +73,26 @@
               </div>
             </div>
           </div>
+
+          @if (datosGrafico) {
+          <div class="card border-0 shadow-sm fade-in">
+            <div class="card-body p-4">
+              <h5 class="fw-bold mb-4 text-center">Evolución próximos 5 días</h5>
+              <div style="display: block;">
+                <canvas baseChart 
+                  [data]="datosGrafico" 
+                  [options]="opcionesGrafico" 
+                  [type]="'line'">
+                </canvas>
+              </div>
+            </div>
+          </div>
+          }
+
         </div>
       </div>
       }
+      
     </div>
   </div>
 </div>
-@if (resultadoBusqueda) {
-<div class="row justify-content-center mt-4">
-  <div class="col-md-8 col-lg-6">
-    <div class="card border-0 shadow mb-4" [ngClass]="obtenerColorTemperatura(resultadoBusqueda.main.temp)">
-    </div>
-
-    @if (datosGrafico) {
-    <div class="card border-0 shadow-sm fade-in">
-      <div class="card-body p-4">
-        <h5 class="fw-bold mb-4 text-center">Evolución próximos 5 días</h5>
-
-        <div style="display: block;">
-          <canvas baseChart [data]="datosGrafico" [options]="opcionesGrafico" [type]="'line'">
-          </canvas>
-        </div>
-
-      </div>
-    </div>
-    }
-  </div>
-</div>
-}
