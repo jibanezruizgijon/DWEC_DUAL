@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 @Component({
   selector: 'app-inicio',
   standalone: false,
@@ -7,21 +6,23 @@ import { Component } from '@angular/core';
   styleUrl: './inicio.scss',
 })
 export class Inicio {
+ // Datos para el carrusel
   imagenesCarrusel = [
-    { url: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1', titulo: 'Explora el Mundo', desc: 'Los mejores destinos a un click.' },
-    { url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e', titulo: 'Playas Paradisiacas', desc: 'Relájate en las mejores costas.' }
+    { url: 'img/carrusel/carrusel1.jpg'},
+    { url: 'img/carrusel/carrusel2.jpg'},
+    { url: 'img/carrusel/carrusel3.jpg'}
   ];
 
   // Datos para el Slider de Parques
   parques = [
-    { nombre: 'Disneyland Paris', imagen: 'assets/parques/disney.jpg' },
-    { nombre: 'PortAventura', imagen: 'assets/parques/port.jpg' },
-    { nombre: 'Warner Park', imagen: 'assets/parques/warner.jpg' }
+    { nombre: 'Disneyland Paris', imagen: 'img/parques/disney.jpg' },
+    { nombre: 'PortAventura', imagen: 'img/parques/portAventura.jpg' },
+    { nombre: 'Warner Park', imagen: 'img/parques/parqueWarner.jpeg' }
   ];
-
+  
   // Viajes destacados
   destacados = [
-    { ciudad: 'Nueva York', precio: '850€', visitas: '+2000' },
-    { ciudad: 'Roma', precio: '120€', visitas: '+5000' }
+    { ciudad: 'Nueva York', visitas: '+2000', imagen: 'img/lugares/newYork.jpg'},
+    { ciudad: 'Roma', visitas: '+5000', imagen: 'img/lugares/roma.jpg' }
   ];
 }

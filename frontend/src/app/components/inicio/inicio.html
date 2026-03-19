@@ -1,15 +1,28 @@
-<div id="carruselPrincipal" class="carousel slide shadow mb-5" data-bs-ride="carousel">
-  <div class="carousel-inner rounded-4">
-    @for (img of imagenesCarrusel; track img.url; let first = $first) {
-      <div class="carousel-item" [class.active]="first">
-        <img [src]="img.url" class="d-block w-100" style="height: 450px; object-fit: cover;">
-        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
-          <h3>{{ img.titulo }}</h3>
-          <p>{{ img.desc }}</p>
-        </div>
-      </div>
-    }
+<div id="carouselExampleIndicators" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="img/carrusel/carrusel1.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="img/carrusel/carrusel2.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="img/carrusel/carrusel3.jpg" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
 
 <section class="mb-5">
@@ -17,7 +30,7 @@
   <div class="d-flex overflow-auto pb-3 gap-3" style="scrollbar-width: thin;">
     @for (parque of parques; track parque.nombre) {
       <div class="card flex-shrink-0" style="width: 250px;">
-        <img [src]="parque.imagen" class="card-img-top" alt="...">
+        <img [src]="parque.imagen" class="card-img-top" alt="Imagen del parque">
         <div class="card-body text-center">
           <h6 class="fw-bold mb-0">{{ parque.nombre }}</h6>
         </div>
@@ -33,11 +46,10 @@
       <div class="col-md-4 mb-4">
         <div class="card border-0 shadow-sm">
           <div class="card-body">
-            <span class="badge bg-warning text-dark mb-2">Top Ventas</span>
             <h5 class="card-title fw-bold">{{ v.ciudad }}</h5>
-            <p class="text-muted small">Visto por {{ v.visitas }} personas este mes</p>
+            <img [src]="v.imagen" class="card-img-top" alt="Ciudad destacada">
+            <p class="text-muted small mt-3">Visto por {{ v.visitas }} personas este mes</p>
             <div class="d-flex justify-content-between align-items-center">
-              <span class="text-primary fw-bold fs-4">desde {{ v.precio }}</span>
               <button class="btn btn-sm btn-outline-primary">Ver oferta</button>
             </div>
           </div>
