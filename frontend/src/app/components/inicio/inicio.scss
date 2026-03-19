@@ -1,11 +1,21 @@
-section {
-  .d-flex.overflow-auto {
-    &::-webkit-scrollbar {
-      height: 6px;
-    }
-    &::-webkit-scrollbar-thumb {
-      background: #dee2e6;
-      border-radius: 10px;
-    }
-  }
+.img-carrusel {
+  height: 450px;           
+  object-fit: cover;      
+  object-position: center; 
+}
+
+.img-parque {
+  height: 180px;          
+  object-fit: cover;
+}
+
+.img-destacado {
+  height: 250px;           
+  object-fit: cover;
+}
+
+.card:hover {
+  background-color: #a2e5e4;
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
 }
