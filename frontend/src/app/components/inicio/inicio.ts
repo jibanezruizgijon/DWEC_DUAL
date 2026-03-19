@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './inicio.scss',
 })
 export class Inicio {
+  
  // Datos para el carrusel
   imagenesCarrusel = [
     { url: 'img/carrusel/carrusel1.jpg'},
@@ -13,7 +14,7 @@ export class Inicio {
     { url: 'img/carrusel/carrusel3.jpg'}
   ];
 
-  // Datos para el Slider de Parques
+  // Datos para las cards de parques
   parques = [
     { nombre: 'Disneyland Paris', imagen: 'img/parques/disney.jpg' },
     { nombre: 'PortAventura', imagen: 'img/parques/portAventura.jpg' },

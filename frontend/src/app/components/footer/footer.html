@@ -1,0 +1,55 @@
+<footer class="footer-fondo pt-5 pb-3 mt-5">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-lg-4 col-md-6 mb-4">
+        <h5 class="text-white fw-bold mb-3">
+          <i class="bi bi-airplane-engines me-2 text-primary"></i>Agencia de Viajes
+        </h5>
+        <p class="text-secondary">Tu aventura empieza aquí. Descubre el mundo con nosotros al mejor precio garantizado.</p>
+        <div class="d-flex gap-3 mt-3">
+          <a href="#" class="fs-4" title="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="fs-4" title="Twitter/X"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="fs-4" title="Facebook"><i class="bi bi-facebook"></i></a>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 mb-4">
+        <h5 class="text-white mb-3">Enlaces Rápidos</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a routerLink="/inicio"><i class="bi bi-chevron-right small me-1"></i> Inicio</a></li>
+          <li class="mb-2"><a routerLink="/sobre-nosotros"><i class="bi bi-chevron-right small me-1"></i> Sobre Nosotros</a></li>
+          
+          @if (authService.estaLogueado()) {
+            <li class="mb-2"><a routerLink="/viajes"><i class="bi bi-chevron-right small me-1"></i> Mis Viajes</a></li>
+            <li class="mb-2"><a routerLink="/tiempo"><i class="bi bi-chevron-right small me-1"></i> El Tiempo</a></li>
+          }
+        </ul>
+      </div>
+
+      <div class="col-lg-4 col-md-12 mb-4">
+        <h5 class="text-white mb-3">Contacto</h5>
+        <ul class="list-unstyled text-secondary">
+          <li class="mb-3"><i class="bi bi-geo-alt me-2 text-primary"></i> Calle Gran Vía 42, Madrid</li>
+          <li class="mb-3"><i class="bi bi-telephone me-2 text-primary"></i> 900 123 456</li>
+          <li class="mb-3"><i class="bi bi-envelope me-2 text-primary"></i> info@agenciadeviajes.com</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <hr class="border-secondary my-4 opacity-25">
+
+    <div class="row align-items-center">
+      <div class="col-md-6 text-center text-md-start">
+        <small class="text-secondary">&copy; {{ anioActual }} Agencia de Viajes. Todos los derechos reservados.</small>
+      </div>
+      <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+        <small>
+          <a href="https://www.aepd.es/politica-de-privacidad-y-aviso-legal" class="me-3">Aviso Legal</a>
+          <a href="https://www.aepd.es/politica-de-privacidad-y-aviso-legal">Política de Privacidad</a>
+        </small>
+      </div>
+    </div>
+  </div>
+</footer>

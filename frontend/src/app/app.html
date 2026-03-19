@@ -1,10 +1,16 @@
-
+<div class="d-flex flex-column min-vh-100">
+  
   <app-cabecera></app-cabecera>
 
-<div class="container mt-5">
-  <router-outlet></router-outlet>
-</div>
+  <div class="container mt-5 flex-grow-1">
+    <router-outlet></router-outlet>
+  </div>
 
+  @if (mostrarFooter) {
+    <app-footer></app-footer>
+  }
+
+</div>
 
 @if (mostrarBotonScroll) {
   <button class="btn-scroll-top" (click)='subirArriba()' title="Subir arriba">

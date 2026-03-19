@@ -1,0 +1,23 @@
+.footer-fondo {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('/img/carrusel/carrusel1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white; 
+
+  a {
+    color: #adb5bd; 
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #ffffff; 
+    }
+  }
+
+
+  .text-secondary {
+    font-size: 0.9rem;
+  }
+}
+

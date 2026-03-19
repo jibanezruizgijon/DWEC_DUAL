@@ -79,7 +79,7 @@ buscarTiempo() {
         
         const temperaturas = diasMediodia.map((item: any) => item.main.temp);
 
-        // Configuramos los datos exactos que necesita Chart.js
+        // Configuración de los datos exactos que necesita Chart.js
         this.datosGrafico = {
           labels: etiquetas,
           datasets: [

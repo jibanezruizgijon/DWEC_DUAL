@@ -21,7 +21,6 @@ export class Viajes implements OnInit{
   // Comprueba si la fecha del viaje es anterior a hoy
   viajePasado(fechaViaje: string): boolean {
     const hoy = new Date();
-    // hoy.setHours(0, 0, 0, 0); 
     const fecha = new Date(fechaViaje);
     return fecha < hoy;
   }

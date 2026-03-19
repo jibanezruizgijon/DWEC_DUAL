@@ -12,9 +12,11 @@ import { Cabecera } from './components/cabecera/cabecera';
 import { Tiempo } from './components/tiempo/tiempo';
 import { Inicio } from './components/inicio/inicio';
 import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2-charts';
+import { Footer } from './components/footer/footer';
+import { SobreNosotros } from './components/sobre-nosotros/sobre-nosotros';
 
 @NgModule({
-  declarations: [App, Login, Registro, Viajes, Cabecera, Tiempo, Inicio],
+  declarations: [App, Login, Registro, Viajes, Cabecera, Tiempo, Inicio, Footer, SobreNosotros],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, BaseChartDirective],
   providers: [
     provideBrowserGlobalErrorListeners(),
@@ -24,7 +26,7 @@ import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2
       useClass: AuthInterceptor,
       multi: true,
     },
-    provideCharts(withDefaultRegisterables())
+    provideCharts(withDefaultRegisterables()),
   ],
   bootstrap: [App],
 })

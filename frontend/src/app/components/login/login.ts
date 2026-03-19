@@ -17,7 +17,7 @@ export class Login {
 
   mensajeDeError = '';
 
-  // Creamos el formulario reactivo
+  // Para crear el formulario reactivo con las validaciones
   formLogin = this.fb.group({
     'email': ["", [Validators.required, Validators.email]],
     'password': ["", Validators.required]
@@ -33,8 +33,8 @@ export class Login {
 
     this.authService.login(this.formLogin.value).subscribe({
       next: () => {
-        // Redirección directa a los viajes
-        this.router.navigate(['/viajes']); 
+        // Redirección directa a la pantalla de inicio
+        this.router.navigate(['/inicio']); 
       },
       error: (error) => {
         // Capturamos los errores
