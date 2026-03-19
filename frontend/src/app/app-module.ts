@@ -11,6 +11,7 @@ import { Viajes } from './components/viajes/viajes';
 import { Cabecera } from './components/cabecera/cabecera';
 import { Tiempo } from './components/tiempo/tiempo';
 import { Inicio } from './components/inicio/inicio';
+import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 @NgModule({
   declarations: [App, Login, Registro, Viajes, Cabecera, Tiempo, Inicio],
@@ -23,6 +24,7 @@ import { Inicio } from './components/inicio/inicio';
       useClass: AuthInterceptor,
       multi: true,
     },
+    provideCharts(withDefaultRegisterables())
   ],
   bootstrap: [App],
 })

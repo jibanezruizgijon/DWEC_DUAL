@@ -60,6 +60,52 @@ buscarTiempo() {
     });
   }
 
+ // Función específica para preparar los datos del gráfico
+  cargarPrevision() {
+    this.tiempoService.obtenerPrevision(this.ciudadBuscada).subscribe({
+      next: (datosPrevision) => {
+        // OpenWeather devuelve 40 resultados (1 cada 3 horas). 
+        // Filtramos para coger solo la temperatura de las 12:00 de cada día.
+        const diasMediodia = datosPrevision.list.filter((item: any) => item.dt_txt.includes('12:00:00'));
+
+        // Extraemos las fechas y las temperaturas de ese filtro
+        const etiquetas = diasMediodia.map((item: any) => {
+          const fecha = new Date(item.dt_txt);
+          // Devuelve ej: "19 Mar"
+          return fecha.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' });
+        });
+        
+        const temperaturas = diasMediodia.map((item: any) => item.main.temp);
+
+        // Configuramos los datos exactos que necesita Chart.js
+        this.datosGrafico = {
+          labels: etiquetas,
+          datasets: [
+            { 
+              data: temperaturas, 
+              label: 'Temperatura a las 12:00 (°C)', 
+              tension: 0.4, // Curva suave
+              borderColor: '#0d6efd', // Azul primario
+              backgroundColor: 'rgba(13, 110, 253, 0.2)', // Relleno semitransparente
+              fill: true,
+              pointBackgroundColor: '#0d6efd',
+              pointRadius: 5
+            }
+          ]
+        };
+
+        this.buscando = false;
+        this.cdr.detectChanges(); // Refrescamos la pantalla con todo listo
+      },
+      error: (error) => {
+        console.error('Error al cargar la previsión', error);
+        this.buscando = false;
+        this.cdr.detectChanges();
+      }
+    });
+  }
+
+
   // Función para los colores dinámicos
   obtenerColorTemperatura(temp: number): string {
     if  (temp < 5) return 'bg-congelado';
