@@ -14,9 +14,9 @@ const routes: Routes = [
   { path: 'viajes', component: Viajes },
   { path: 'tiempo', component: Tiempo },
   { path: 'nuevoViaje', component: NuevoViaje },
+  { path: 'sobre-nosotros', component: SobreNosotros },
   { path: '**', redirectTo: '/inicio', pathMatch: 'full' },
-  { path: '', redirectTo: '/inicio', pathMatch: 'full' },
-  { path: 'sobre-nosotros', component: SobreNosotros }
+  { path: '', redirectTo: '/inicio', pathMatch: 'full' }
 ];
 
 @NgModule({

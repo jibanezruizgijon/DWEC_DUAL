@@ -72,12 +72,9 @@
           aria-label="Close"></button>
       </div>
 
-      <div class="position-relative"
-        style="height: 300px; overflow: hidden; border-top-left-radius: 0.375rem; border-top-right-radius: 0.375rem;">
-        <img [src]="lugarSeleccionado.imagen_url" class="w-100 h-100 object-fit-cover" style="object-position: center;"
-          alt="Fondo">
-        <div class="position-absolute bottom-0 w-100 p-3"
-          style="background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white;">
+      <div class="position-relative modal-imagen-container">
+        <img [src]="lugarSeleccionado.imagen_url" class="w-100 h-100 object-fit-cover modal-imagen" alt="Fondo">
+        <div class="position-absolute bottom-0 w-100 p-3 modal-titulo-container">
           <h3 class="fw-bold mb-0 text-shadow">{{ lugarSeleccionado.nombre }}</h3>
         </div>
       </div>
