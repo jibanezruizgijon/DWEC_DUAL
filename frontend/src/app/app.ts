@@ -11,7 +11,7 @@ export class App {
   protected readonly title = signal('frontend');
   private router = inject(Router);
 
-  mostrarBotonScroll = false;
+  BotonScroll = false;
   mostrarFooter = false;
 constructor() {
     // Escucha los eventos de navegación
@@ -28,7 +28,7 @@ constructor() {
   @HostListener('window:scroll', [])
   onWindowScroll() {
     // Muestra el botón si baja más de 300px
-    this.mostrarBotonScroll = window.scrollY > 300;
+    this.BotonScroll = window.scrollY > 300;
   }
 
 

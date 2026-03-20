@@ -26,7 +26,7 @@
     @for (lugar of lugares; track lugar.id) {
     <div class="col-md-6 col-lg-3 mb-4">
       <div class="card h-100 border-0 shadow-sm hover-card cursor-pointer" (click)="abrirModal(lugar)">
-        <img [src]="lugar.imagen_url" class="card-img-top img-viajes" alt="Foto de {{ lugar.nombre }}">
+        <img [src]="lugar.imagen_url" class="card-img-top img__viajes" alt="Foto de {{ lugar.nombre }}">
         <div class="card-body text-center">
           <h5 class="card-title fw-bold mb-0">{{ lugar.nombre }}</h5>
           <p class="text-muted small mt-1"><i class="bi bi-geo-alt me-1"></i> {{ lugar.pais }}</p>
@@ -72,9 +72,9 @@
           aria-label="Close"></button>
       </div>
 
-      <div class="position-relative modal-imagen-container">
-        <img [src]="lugarSeleccionado.imagen_url" class="w-100 h-100 object-fit-cover modal-imagen" alt="Fondo">
-        <div class="position-absolute bottom-0 w-100 p-3 modal-titulo-container">
+      <div class="position-relative modal__imagen__container">
+        <img [src]="lugarSeleccionado.imagen_url" class="w-100 h-100 object-fit-cover modal__imagen" alt="Fondo">
+        <div class="position-absolute bottom-0 w-100 p-3 modal__titulo__container">
           <h3 class="fw-bold mb-0 text-shadow">{{ lugarSeleccionado.nombre }}</h3>
         </div>
       </div>

@@ -30,14 +30,14 @@
     }
   </div>
 
-  <div class="card border-0 shadow-sm mt-4 fade-in" style="animation-delay: 0.5s;">
+  <div class="card border-0 shadow-sm mt-4 fade-in">
     <div class="card-body p-4 text-center">
       <h4 class="mb-3">Busca cualquier ciudad del mundo</h4>
 
       <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
           <div class="input-group mb-3 shadow-sm">
-            <input type="text" class="form-control form-control-lg" placeholder="Ej: Tokio, Utrera, New York..."
+            <input type="text" class="form-control form-control-lg" placeholder="Ej: Utrera, New York..."
               [(ngModel)]="ciudadBuscada" (keyup.enter)="buscarTiempo()">
             <button class="btn btn-primary px-4" type="button" (click)="buscarTiempo()" [disabled]="buscando">
               @if (buscando) { Buscando... } @else { Buscar }
@@ -65,7 +65,7 @@
                   <span><i class="bi bi-droplet"></i> {{ resultadoBusqueda.main.humidity }}%</span>
                   <span><i class="bi bi-wind"></i> {{ resultadoBusqueda.wind.speed }} m/s</span>
                 </div>
-              </div>
+              </div>º
               <div class="text-end">
                 <img [src]="'http://openweathermap.org/img/wn/' + resultadoBusqueda.weather[0].icon + '@2x.png'"
                   alt="icono clima" class="mb-n2" width="80">
