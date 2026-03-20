@@ -18,8 +18,17 @@ Route::middleware('auth:sanctum', 'throttle:60,1')->group(function () {
 
     Route::apiResource('viajes', ViajeController::class)->only(['index', 'store', 'destroy']);
 
-    Route::get('/lugares', function () {
-        return \App\Models\Lugar::all();
+    Route::get('/lugares', function (Request $request) {
+        $query = \App\Models\Lugar::query();
+
+        // Comprueba si desde angular se ha hecho una busqueda
+        if ($request->has('buscar') && $request->buscar != '') {
+            $busqueda = $request->buscar;
+            $query->where('nombre', 'LIKE', '%' . $busqueda . '%')
+                  ->orWhere('pais', 'LIKE', '%' . $busqueda . '%');
+        }
+
+        return response()->json($query->paginate(20));
     });
 });
 

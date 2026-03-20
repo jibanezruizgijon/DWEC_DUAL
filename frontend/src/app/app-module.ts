@@ -14,9 +14,21 @@ import { Inicio } from './components/inicio/inicio';
 import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { Footer } from './components/footer/footer';
 import { SobreNosotros } from './components/sobre-nosotros/sobre-nosotros';
+import { NuevoViaje } from './components/nuevo-viaje/nuevo-viaje';
 
 @NgModule({
-  declarations: [App, Login, Registro, Viajes, Cabecera, Tiempo, Inicio, Footer, SobreNosotros],
+  declarations: [
+    App,
+    Login,
+    Registro,
+    Viajes,
+    Cabecera,
+    Tiempo,
+    Inicio,
+    Footer,
+    SobreNosotros,
+    NuevoViaje,
+  ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, BaseChartDirective],
   providers: [
     provideBrowserGlobalErrorListeners(),

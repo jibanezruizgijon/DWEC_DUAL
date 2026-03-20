@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lugar;
 use App\Models\Viaje;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,11 +13,14 @@ class ViajeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Viaje::with('lugar')
+        $viajes = Viaje::with('lugar')
             ->where('user_id', Auth::id())
+            ->orderBy('fecha_viaje', 'asc')
             ->get();
+
+        return response()->json($viajes);
     }
 
     /**

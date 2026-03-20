@@ -6,16 +6,17 @@ import { Observable } from 'rxjs';
 export class AuthInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     // Busca el token que se guarda al hacer login
-    const token = localStorage.getItem('auth_token');
+    // En el método intercept
+    const token = sessionStorage.getItem('auth_token'); //
 
     // solo lo pega si la petición no es de la API de clima
-   if (token && !request.url.includes('openweathermap')) {
-    request = request.clone({
-      setHeaders: {
-        Authorization: `Bearer ${token}`
-      }
-    });
-  }
+    if (token && !request.url.includes('openweathermap')) {
+      request = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+    }
 
     // Deja que la petición continúe su viaje hacia Laravel
     return next.handle(request);

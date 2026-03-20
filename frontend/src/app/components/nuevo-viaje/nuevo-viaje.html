@@ -1,0 +1,104 @@
+<div class="container mt-4 mb-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold">Explorar Destinos</h2>
+    <button class="btn btn-outline-secondary" routerLink="/viajes">Volver a mis viajes</button>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-md-6 mx-auto">
+      <div class="input-group shadow-sm">
+        <span class="input-group-text bg-white border-end-0"><i class="bi bi-search"></i></span>
+        <input type="text" class="form-control border-start-0" placeholder="Buscar por ciudad o país..."
+          [(ngModel)]="Busqueda" (keyup.enter)="buscar()">
+        <button class="btn btn-primary" (click)="buscar()">Buscar</button>
+      </div>
+    </div>
+  </div>
+
+  @if (cargando) {
+  <div class="text-center my-5">
+    <div class="spinner-border text-primary" role="status"></div>
+    <p class="mt-2 text-muted">Cargando destinos...</p>
+  </div>
+  } @else {
+
+  <div class="row">
+    @for (lugar of lugares; track lugar.id) {
+    <div class="col-md-6 col-lg-3 mb-4">
+      <div class="card h-100 border-0 shadow-sm hover-card cursor-pointer" (click)="abrirModal(lugar)">
+        <img [src]="lugar.imagen_url" class="card-img-top img-viajes" alt="Foto de {{ lugar.nombre }}">
+        <div class="card-body text-center">
+          <h5 class="card-title fw-bold mb-0">{{ lugar.nombre }}</h5>
+          <p class="text-muted small mt-1"><i class="bi bi-geo-alt me-1"></i> {{ lugar.pais }}</p>
+          <button class="btn btn-outline-primary btn-sm w-100 mt-2">Planear Viaje</button>
+        </div>
+      </div>
+    </div>
+    } @empty {
+    <div class="col-12 text-center text-muted py-5">
+      <i class="bi bi-emoji-frown display-4 d-block mb-3"></i>
+      <h4>No hemos encontrado destinos con ese nombre</h4>
+    </div>
+    }
+  </div>
+
+  @if (lugares.length > 0 && ultimaPagina > 1) {
+  <nav class="mt-4">
+    <ul class="pagination justify-content-center shadow-sm">
+      <li class="page-item" [class.disabled]="paginaActual === 1">
+        <button class="page-link" (click)="cambiarPagina(paginaActual - 1)">Anterior</button>
+      </li>
+
+      <li class="page-item active">
+        <span class="page-link">Página {{ paginaActual }} de {{ ultimaPagina }}</span>
+      </li>
+
+      <li class="page-item" [class.disabled]="paginaActual === ultimaPagina">
+        <button class="page-link" (click)="cambiarPagina(paginaActual + 1)">Siguiente</button>
+      </li>
+    </ul>
+  </nav>
+  }
+  }
+</div>
+
+<div class="modal fade" id="modalNuevoViaje" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg">
+
+      @if (lugarSeleccionado) {
+      <div class="modal-header border-0 pb-0 z-1 position-relative">
+        <button type="button" class="btn-close bg-white rounded-circle p-2 shadow-sm" data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+
+      <div class="position-relative"
+        style="height: 300px; overflow: hidden; border-top-left-radius: 0.375rem; border-top-right-radius: 0.375rem;">
+        <img [src]="lugarSeleccionado.imagen_url" class="w-100 h-100 object-fit-cover" style="object-position: center;"
+          alt="Fondo">
+        <div class="position-absolute bottom-0 w-100 p-3"
+          style="background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white;">
+          <h3 class="fw-bold mb-0 text-shadow">{{ lugarSeleccionado.nombre }}</h3>
+        </div>
+      </div>
+
+      <div class="modal-body p-4">
+        <p class="text-muted mb-4">Estás a un paso de comenzar tu aventura. Selecciona la fecha en la que deseas
+          realizar el viaje.</p>
+
+        <div class="mb-3">
+          <label class="form-label fw-bold"><i class="bi bi-calendar-event me-2 text-primary"></i>Fecha del
+            Viaje</label>
+          <input type="date" class="form-control form-control-lg" [(ngModel)]="fechaViaje">
+        </div>
+      </div>
+
+      <div class="modal-footer border-0 p-4 pt-0">
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary px-4" [disabled]="!fechaViaje" (click)="confirmarViaje()">Confirmar
+          Reserva</button>
+      </div>
+      }
+    </div>
+  </div>
+</div>

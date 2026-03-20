@@ -14,4 +14,9 @@ private apiUrl = 'http://localhost:8000/api/viajes';
   cancelarViaje(id: number) {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
+
+
+  crearViaje(datosViaje: any) {
+    return this.http.post(this.apiUrl, datosViaje);
+  }
 }
