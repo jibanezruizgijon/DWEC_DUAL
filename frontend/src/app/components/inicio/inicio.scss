@@ -1,15 +1,15 @@
-.img-carrusel {
+.img__carrusel {
   height: 450px;           
   object-fit: cover;      
   object-position: center; 
 }
 
-.img-parque {
+.img__parque {
   height: 180px;          
   object-fit: cover;
 }
 
-.img-destacado {
+.img__destacado {
   height: 250px;           
   object-fit: cover;
 }
@@ -20,10 +20,10 @@
   transition: transform 0.3s ease;
 }
 
-.parques-container {
+.parques__container {
   scrollbar-width: thin;
 }
 
-.card-parque {
+.card__parque {
   width: 250px;
 }

@@ -9,13 +9,13 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="img/carrusel/carrusel1.jpg" class="d-block w-100 img-carrusel" alt="...">
+      <img src="img/carrusel/carrusel1.jpg" class="d-block w-100 img__carrusel" alt="imagen carrusel">
     </div>
     <div class="carousel-item">
-      <img src="img/carrusel/carrusel2.jpg" class="d-block w-100 img-carrusel" alt="...">
+      <img src="img/carrusel/carrusel2.jpg" class="d-block w-100 img__carrusel" alt="imagen carrusel">
     </div>
     <div class="carousel-item">
-      <img src="img/carrusel/carrusel3.jpg" class="d-block w-100 img-carrusel" alt="...">
+      <img src="img/carrusel/carrusel3.jpg" class="d-block w-100 img__carrusel" alt="imagen carrusel">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -30,10 +30,10 @@
 
 <section class="mb-5 mt-5">
   <h3 class="fw-bold mb-4 border-start border-primary border-4 ps-3">Parques Temáticos</h3>
-  <div class="d-flex overflow-auto pb-3 gap-3 parques-container">
+  <div class="d-flex overflow-auto pb-3 gap-3 parques__container">
     @for (parque of parques; track parque.nombre) {
-    <div class="card flex-shrink-0 card-parque">
-      <img [src]="parque.imagen" class="card-img-top img-parque" alt="Imagen del parque">
+    <div class="card flex-shrink-0 card__parque">
+      <img [src]="parque.imagen" class="card-img-top img__parque" alt="Imagen del parque">
       <div class="card-body text-center">
         <h6 class="fw-bold mb-0">{{ parque.nombre }}</h6>
       </div>
@@ -47,13 +47,13 @@
   <div class="row">
     @for (v of destacados; track v.ciudad) {
     <div class="col-md-4 mb-4">
-     <div class="card border-0 shadow-sm">
-          <div class="card-body">
-            <h5 class="card-title fw-bold">{{ v.ciudad }}</h5>
-            <img [src]="v.imagen" class="card-img-top img-destacado" alt="Ciudad destacada">
-            <p class="text-muted small mt-3">Visto por {{ v.visitas }} personas este mes</p>
-          </div>
+      <div class="card border-0 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">{{ v.ciudad }}</h5>
+          <img [src]="v.imagen" class="card-img-top img__destacado" alt="Ciudad destacada">
+          <p class="text-muted small mt-3">Visto por {{ v.visitas }} personas este mes</p>
         </div>
+      </div>
     </div>
     }
   </div>
