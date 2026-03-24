@@ -17,7 +17,7 @@ export class NuevoViaje implements OnInit {
 
   lugares: any[] = [];
   cargando = false;
-
+  errorFecha = '';
   // Variables para paginación y búsqueda
   Busqueda = '';
   paginaActual = 1;
@@ -28,6 +28,7 @@ export class NuevoViaje implements OnInit {
   fechaViaje = '';
   instanciaModal: any;
 
+  fechaMinima = new Date().toISOString().split('T')[0];
   ngOnInit() {
     this.cargarLugares();
   }
@@ -36,7 +37,7 @@ export class NuevoViaje implements OnInit {
     this.cargando = true;
     this.lugaresService.obtenerLugares(pagina, this.Busqueda).subscribe({
       next: (respuesta) => {
-        this.lugares = respuesta.data || respuesta || []; 
+        this.lugares = respuesta.data || respuesta || [];
         this.paginaActual = respuesta.current_page || 1;
         this.ultimaPagina = respuesta.last_page || 1;
         this.cargando = false;
@@ -61,6 +62,7 @@ export class NuevoViaje implements OnInit {
   }
 
   confirmarViaje() {
+    this.errorFecha = '';
     if (!this.fechaViaje || !this.lugarSeleccionado) return;
 
     const datosViaje = {
@@ -74,7 +76,14 @@ export class NuevoViaje implements OnInit {
         this.instanciaModal.hide();
         this.router.navigate(['/viajes']);
       },
-      error: (err) => console.error('Error al guardar el viaje', err)
+      error: (error) => {
+        if (error.status === 422) {
+          this.errorFecha = 'La fecha del viaje no puede ser anterior a hoy.';
+        } else {
+          this.errorFecha = 'Ocurrió un error al reservar el viaje.';
+        }
+        this.cdr.detectChanges();
+      }
     });
   }
 

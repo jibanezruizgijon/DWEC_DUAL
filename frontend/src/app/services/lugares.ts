@@ -11,7 +11,7 @@ export class Lugares {
   
   obtenerLugares(pagina: number = 1, busqueda: string = ''): Observable<any> {
     let parametros = new HttpParams().set('page', pagina);
-
+    
    if (busqueda) {
       parametros = parametros.set('buscar', busqueda);
     }

@@ -10,24 +10,30 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-login(credentials: any) {
-  return this.http.post(`${this.apiUrl}/login`, credentials).pipe(
-    tap((res: any) => {
-      // Cambia localStorage por sessionStorage
-      sessionStorage.setItem('auth_token', res.token);
-    })
-  );
-}
+  login(datos: any) {
+    return this.http.post(`${this.apiUrl}/login`, datos).pipe(
+      tap((res: any) => {
+        // Guarda el token en el almacenamiento 
+        sessionStorage.setItem('auth_token', res.token);
+      })
+    );
+  }
 
-estaLogueado(): boolean {
-  return !!sessionStorage.getItem('auth_token');
-}
+  estaLogueado(): boolean {
+    const token = sessionStorage.getItem('auth_token');
 
-logout() {
-  sessionStorage.removeItem('auth_token');
-}
+    if (token) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  logout() {
+    sessionStorage.removeItem('auth_token');
+  }
   registro(datos: any) {
     return this.http.post(`${this.apiUrl}/register`, datos);
   }
-  
+
 }
