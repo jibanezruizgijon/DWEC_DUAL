@@ -22,10 +22,7 @@
     @for (viaje of listaViajes; track viaje.id) {
     <div class="col-md-6 col-lg-4 mb-4">
       <div class="card h-100 border-0 shadow-sm hover-card">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-start">
-            <small class="text-muted fst-italic">Destino: {{ viaje.lugar_id }}</small>
-          </div>
+        <div class="card-body"> 
           <h5 class="card-title mt-2 mb-3 text-capitalize">
             Viaje: {{ viaje.lugar?.nombre || 'Destino desconocido' }}
           </h5>
@@ -43,7 +40,7 @@
             <button class="btn btn-outline-danger btn-sm" (click)="cancelar(viaje.id)">Cancelar</button>
             }
 
-            <button class="btn btn-outline-primary btn-sm">Detalles</button>
+            <button class="btn btn-outline-primary btn-sm" (click)="abrirDetalles(viaje)">Detalles</button>
           </div>
         </div>
 
@@ -58,4 +55,33 @@
     }
   </div>
   }
+</div>
+<div class="modal fade" id="detallesModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow">
+      @if (viajeSeleccionado && viajeSeleccionado.lugar) {
+        <div class="modal-header border-0">
+          <h5 class="modal-title fw-bold">{{ viajeSeleccionado.lugar.nombre }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-0">
+          <img [src]="viajeSeleccionado.lugar.imagen_url" 
+               class="img-fluid w-100" 
+               alt="{{ viajeSeleccionado.lugar.nombre }}" 
+               style="height: 250px; object-fit: cover;">
+          
+          <div class="p-4">
+            <h6 class="text-primary fw-bold mb-3">
+              <i class="bi bi-geo-alt-fill me-1"></i> {{ viajeSeleccionado.lugar.pais }}
+            </h6>
+            <p class="text-muted">{{ viajeSeleccionado.lugar.descripcion }}</p>
+            <hr>
+            <div class="d-flex justify-content-between text-secondary small">
+              <span><i class="bi bi-calendar-check"></i> Fecha de viaje: {{ viajeSeleccionado.fecha_viaje | date: 'dd/MM/yyyy' }}</span>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
 </div>

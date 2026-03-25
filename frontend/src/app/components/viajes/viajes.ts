@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { ViajesService } from '../../services/viajes.service';
 import { Viaje } from '../../interfaces/viaje';
-
+import { Lugar } from '../../interfaces/lugar';
 @Component({
   selector: 'app-viajes',
   standalone: false,
@@ -16,7 +16,7 @@ export class Viajes implements OnInit{
   listaViajes: Viaje[] = [];
   mensajeError = '';
   cargando = true;
-  
+  viajeSeleccionado: Viaje | null = null;
 
   // Comprueba si la fecha del viaje es anterior a hoy
   viajePasado(fechaViaje: string): boolean {
@@ -39,6 +39,15 @@ export class Viajes implements OnInit{
       });
     }
   }
+
+  abrirDetalles(viaje: Viaje) {
+  this.viajeSeleccionado = viaje;
+  const modalElement = document.getElementById('detallesModal');
+  if (modalElement) {
+    const modal = new (window as any).bootstrap.Modal(modalElement);
+    modal.show();
+  }
+}
   ngOnInit(): void {
     this.viajesService.obtenerViajes().subscribe({
       next: (viajes) => {

@@ -79,13 +79,21 @@
         </div>
       </div>
 
-      <div class="modal-body p-4">
-        <p class="text-muted mb-4">Estás a un paso de comenzar tu aventura. Selecciona la fecha en la que deseas
-          realizar el viaje.</p>
+     <div class="modal-body p-4">
+        
+        <div class="mb-4">
+          <h6 class="text-primary fw-bold mb-2">Sobre este destino:</h6>
+          <p class="text-secondary fw-bold">
+            {{ lugarSeleccionado.descripcion }}
+          </p>
+        </div>
+
+        <p class="text-muted mb-4">
+          Estás a un paso de comenzar tu aventura. Selecciona la fecha en la que deseas realizar el viaje.
+        </p>
 
         <div class="mb-3">
-          <label class="form-label fw-bold"><i class="bi bi-calendar-event me-2 text-primary"></i>Fecha del
-            Viaje</label>
+          <label class="form-label fw-bold"><i class="bi bi-calendar-event me-2 text-primary"></i>Fecha del Viaje</label>
           <input type="date" class="form-control form-control-lg" [min]="fechaMinima" [(ngModel)]="fechaViaje">
           @if (errorFecha) {
           <div class="text-danger mt-2 small">
