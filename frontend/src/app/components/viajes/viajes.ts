@@ -8,7 +8,7 @@ import { Lugar } from '../../interfaces/lugar';
   templateUrl: './viajes.html',
   styleUrl: './viajes.scss',
 })
-export class Viajes implements OnInit{
+export class Viajes implements OnInit {
 
   private viajesService = inject(ViajesService);
   private cdr = inject(ChangeDetectorRef);
@@ -17,6 +17,7 @@ export class Viajes implements OnInit{
   mensajeError = '';
   cargando = true;
   viajeSeleccionado: Viaje | null = null;
+  viajeParaCancelar: Viaje | null = null;
 
   // Comprueba si la fecha del viaje es anterior a hoy
   viajePasado(fechaViaje: string): boolean {
@@ -24,30 +25,46 @@ export class Viajes implements OnInit{
     const fecha = new Date(fechaViaje);
     return fecha < hoy;
   }
-  cancelar(id: number) {
-    if (confirm('¿Estás seguro de que quieres cancelar este viaje?')) {
-      this.viajesService.cancelarViaje(id).subscribe({
-        next: () => {
-          this.listaViajes = this.listaViajes.filter(viaje => viaje.id !== id);
-          this.cdr.detectChanges();
-        },
-        error: (err) => {
-          this.mensajeError = 'No se pudo cancelar el viaje.';
-          console.error(err);
-          this.cdr.detectChanges();
-        }
-      });
+  prepararCancelacion(viaje: Viaje) {
+    this.viajeParaCancelar = viaje;
+    const modalElement = document.getElementById('cancelarModal');
+    if (modalElement) {
+      const modal = new (window as any).bootstrap.Modal(modalElement);
+      modal.show();
     }
+  }
+  confirmarCancelacion() {
+    if (!this.viajeParaCancelar) return;
+
+    this.viajesService.cancelarViaje(this.viajeParaCancelar.id).subscribe({
+      next: () => {
+        // Filtramos la lista para quitar el viaje borrado
+        this.listaViajes = this.listaViajes.filter(v => v.id !== this.viajeParaCancelar?.id);
+
+        // Cerramos el modal manualmente
+        const modalElement = document.getElementById('cancelarModal');
+        const modal = (window as any).bootstrap.Modal.getInstance(modalElement);
+        if (modal) modal.hide();
+
+        this.viajeParaCancelar = null;
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        this.mensajeError = 'No se pudo cancelar el viaje.';
+        console.error(err);
+        this.cdr.detectChanges();
+      }
+    });
   }
 
   abrirDetalles(viaje: Viaje) {
-  this.viajeSeleccionado = viaje;
-  const modalElement = document.getElementById('detallesModal');
-  if (modalElement) {
-    const modal = new (window as any).bootstrap.Modal(modalElement);
-    modal.show();
+    this.viajeSeleccionado = viaje;
+    const modalElement = document.getElementById('detallesModal');
+    if (modalElement) {
+      const modal = new (window as any).bootstrap.Modal(modalElement);
+      modal.show();
+    }
   }
-}
   ngOnInit(): void {
     this.viajesService.obtenerViajes().subscribe({
       next: (viajes) => {
@@ -56,7 +73,7 @@ export class Viajes implements OnInit{
         this.cdr.detectChanges();
       },
       error: (err) => {
-       this.cargando = false;
+        this.cargando = false;
         this.mensajeError = 'No se han podido cargar tus viajes.';
         console.error(err);
         this.cdr.detectChanges();

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('throttle:20,1')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
+    Route::get('/inicio-datos', [ViajeController::class, 'datosInicio']);
 });
 // Rutas protegidas 
 Route::middleware('auth:sanctum', 'throttle:60,1')->group(function () {
@@ -28,7 +29,7 @@ Route::middleware('auth:sanctum', 'throttle:60,1')->group(function () {
                   ->orWhere('pais', 'LIKE', '%' . $busqueda . '%');
         }
 
-        return response()->json($query->paginate(20));
+        return response()->json($query->paginate(12));
     });
 });
 

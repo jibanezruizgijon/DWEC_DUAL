@@ -1,15 +1,14 @@
-.cursor-pointer { cursor: pointer; }
+.cursor-pointer {
+  cursor: pointer;
+}
 
 .img__viajes {
-  height: 250px;          
+  height: 250px;
   object-fit: cover;
 }
 
 .modal__imagen_container {
   height: 300px;
-  overflow: hidden;
-  border-top-left-radius: 0.375rem;
-  border-top-right-radius: 0.375rem;
 }
 
 .modal__imagen {
@@ -17,6 +16,6 @@
 }
 
 .modal__titulo__container {
-  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
   color: white;
 }

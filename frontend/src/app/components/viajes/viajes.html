@@ -37,7 +37,7 @@
             @if (viajePasado(viaje.fecha_viaje)) {
             <span class="text-muted fst-italic me-2 small">Viaje finalizado</span>
             } @else {
-            <button class="btn btn-outline-danger btn-sm" (click)="cancelar(viaje.id)">Cancelar</button>
+            <button class="btn btn-outline-danger btn-sm" (click)="prepararCancelacion(viaje)">Cancelar</button>
             }
 
             <button class="btn btn-outline-primary btn-sm" (click)="abrirDetalles(viaje)">Detalles</button>
@@ -82,6 +82,27 @@
           </div>
         </div>
       }
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="cancelarModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-dialog-centered">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header border-0 pb-0">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center p-4">
+        <i class="bi bi-exclamation-triangle text-danger display-4 mb-3"></i>
+        <h5 class="fw-bold">¿Estás seguro?</h5>
+        <p class="text-muted small">
+          Vas a cancelar tu viaje a <strong>{{ viajeParaCancelar?.lugar?.nombre }}</strong>
+        </p>
+      </div>
+      <div class="modal-footer border-0 d-flex justify-content-center pb-4">
+        <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal">No, volver</button>
+        <button type="button" class="btn btn-danger px-4" (click)="confirmarCancelacion()">Sí, cancelar</button>
+      </div>
     </div>
   </div>
 </div>

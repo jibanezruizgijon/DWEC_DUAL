@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Lugar } from '../interfaces/lugar';
 
 @Injectable({
   providedIn: 'root',
@@ -19,5 +20,8 @@ export class Lugares {
     return this.http.get<any>(this.apiUrl, { params: parametros });
   }
 
+obtenerDatosInicio(): Observable<{parques: Lugar[], destacados: Lugar[]}> {
+  return this.http.get<{parques: Lugar[], destacados: Lugar[]}>(`http://localhost:8000/api/inicio-datos`); 
+}
 
 }

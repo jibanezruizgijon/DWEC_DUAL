@@ -98,4 +98,19 @@ class ViajeController extends Controller
             'message' => 'Viaje cancelado correctamente.'
         ]);
     }
+
+    public function datosInicio()
+    {
+        // Trae todos los parques
+        $parques = Lugar::where('tipo', 'parque')->get();
+
+        // Trae solo las ciudades destacadas por el nombre
+        $nombresDestacados = ['Nueva York', 'Roma', 'París', 'Dubái', 'Berlín', 'Tokyo'];
+        $destacados = Lugar::whereIn('nombre', $nombresDestacados)->get();
+
+        return response()->json([
+            'parques' => $parques,
+            'destacados' => $destacados
+        ]);
+    }
 }

@@ -1,7 +1,10 @@
 .hero__section {
-    background: linear-gradient(rgba(13, 110, 253, 0.6), rgba(0, 0, 0, 0.7)), url('/img/sobreNosotros/avion.jpeg') center/cover no-repeat;
+    background: linear-gradient(rgba(13, 110, 253, 0.6), rgba(0, 0, 0, 0.7)), url('/img/sobreNosotros/avion.jpeg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
     height: 350px;
     border-bottom-left-radius: 40px;
     border-bottom-right-radius: 40px;
 }
-

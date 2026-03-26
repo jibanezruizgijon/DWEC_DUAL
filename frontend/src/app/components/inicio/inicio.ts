@@ -1,34 +1,43 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import { Lugar } from '../../interfaces/lugar';
+import { Lugares } from '../../services/lugares';
 @Component({
   selector: 'app-inicio',
   standalone: false,
   templateUrl: './inicio.html',
   styleUrl: './inicio.scss',
 })
-export class Inicio {
-  
- // Datos para el carrusel
+export class Inicio implements OnInit {
+
+  private lugaresService = inject(Lugares);
+  private cdr = inject(ChangeDetectorRef);
+
+  // Datos para el carrusel principal (estos se pueden quedar así por ahora)
   imagenesCarrusel = [
-    { url: 'img/carrusel/carrusel1.jpg'},
-    { url: 'img/carrusel/carrusel2.jpg'},
-    { url: 'img/carrusel/carrusel3.jpg'}
+    { url: 'img/carrusel/carrusel1.jpg' },
+    { url: 'img/carrusel/carrusel2.jpg' },
+    { url: 'img/carrusel/carrusel3.jpg' }
   ];
 
-  // Datos para las cards de parques
-  parques = [
-    { nombre: 'Disneyland Paris', imagen: 'img/parques/disney.jpg' },
-    { nombre: 'PortAventura', imagen: 'img/parques/portAventura.jpg' },
-    { nombre: 'Warner Park', imagen: 'img/parques/parqueWarner.jpeg' },
-    { nombre: 'Universal Studios', imagen: 'img/parques/universal.jpg' }
-  ];
-  
-  // Viajes destacados
-  destacados = [
-    { ciudad: 'Nueva York', visitas: '+2000', imagen: 'img/lugares/newYork.jpg'},
-    { ciudad: 'Roma', visitas: '+5000', imagen: 'img/lugares/roma.jpg' },
-    { ciudad: 'Paris', visitas: '+3000', imagen: 'img/lugares/paris.jpg' },
-    {ciudad: 'Dubai', visitas: '+1000', imagen: 'img/lugares/dubai.jpg' },
-    {ciudad: 'Berlin', visitas: '+4000', imagen: 'img/lugares/berlin.jpg' },
-    {ciudad: 'Tokyo', visitas: '+6000', imagen: 'img/lugares/tokyo.jpg' }
-  ];
+  parques: Lugar[] = [];
+  // Usamos el tipo Lugar y le añadimos dinámicamente la propiedad 'visitas'
+  destacados: Lugar[] = [];
+
+  ngOnInit() {
+    this.cargarDatos();
+  }
+
+  cargarDatos() {
+    this.lugaresService.obtenerDatosInicio().subscribe({
+      next: (respuesta) => {
+        this.parques = respuesta.parques;
+        this.destacados = respuesta.destacados;
+        this.cdr.detectChanges();
+      },
+      error: (error) => {
+        console.error('Error al cargar datos de inicio:', error);
+        this.cdr.detectChanges();
+      }
+    });
+  }
 }
