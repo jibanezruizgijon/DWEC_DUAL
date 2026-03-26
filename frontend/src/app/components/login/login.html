@@ -1,51 +1,80 @@
-<div class="row justify-content-center mt-5">
-  <div class="col-md-6 col-lg-4">
-    <div class="card shadow-sm">
-      <div class="card-body p-4">
-        <h3 class="text-center mb-4">Iniciar Sesión</h3>
-
-        @if (mensajeDeError) {
-          <div class="alert alert-danger">
-            {{ mensajeDeError }}
-          </div>
-        }
-
-        <form [formGroup]="formLogin" (ngSubmit)="iniciarSesion()">
+<div class="row justify-content-center mt-5 mb-5">
+  <div class="col-md-11 col-lg-10">
+    <div class="card border-0 shadow-lg overflow-hidden rounded-4">
+      <div class="row g-0">
+        
+        <div class="col-md-7 d-none d-md-block position-relative">
+          <img src="img/carrusel/carrusel2.jpg" class="img-fluid h-100 w-100 imagen-fondo" alt="Viajes">
+          <div class="position-absolute top-0 start-0 w-100 h-100 capa-oscura"></div>
           
-          <div class="mb-3">
-            <label class="form-label">Correo Electrónico:</label>
-            <input type="email" formControlName="email" class="form-control" placeholder="Introduce tu email">
-            
-            <div class="text-danger mt-1 text-sm" [hidden]="email.valid || email.pristine">
-              @if (email?.errors?.['required']) {
-                <span>El email es obligatorio</span>
-              }
-              @if (email?.errors?.['email']) {
-                <span>Debe ser un formato de email válido</span>
-              }
-            </div>
+          <div class="position-absolute bottom-0 start-0 p-5 text-white">
+            <h3 class="fw-bold mb-3">Bienvenido de nuevo</h3>
+            <p class="mb-0 text-white-75">Tus próximos destinos te están esperando. Entra para gestionar tus reservas y descubrir nuevas aventuras.</p>
           </div>
-
-          <div class="mb-4">
-            <label class="form-label">Contraseña:</label>
-            <input type="password" formControlName="password" class="form-control" placeholder="Tu contraseña">
-            
-            <div class="text-danger mt-1 text-sm" [hidden]="password.valid || password.pristine">
-              @if (password?.errors?.['required']) {
-                <span>La contraseña es obligatoria</span>
-              }
-            </div>
-          </div>
-
-          <button type="submit" class="btn btn-primary w-100" [disabled]="formLogin.invalid">
-            Entrar
-          </button>
-          
-        </form>
-
-        <div class="text-center mt-3">
-          <p class="mb-0">¿No tienes cuenta? <a routerLink="/register">Regístrate aquí</a></p>
         </div>
+
+        <div class="col-md-5 d-flex align-items-center bg-white">
+          <div class="card-body p-4 p-lg-5 w-100">
+            
+            <div class="text-center mb-4">
+              <i class="bi bi-person-circle text-primary display-4 mb-3 d-block"></i>
+              <h3 class="fw-bold text-dark">Iniciar Sesión</h3>
+              <p class="text-muted small">Introduce tus credenciales para continuar</p>
+            </div>
+
+            @if (mensajeDeError) {
+              <div class="alert alert-danger border-0 shadow-sm d-flex align-items-center">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                <div>{{ mensajeDeError }}</div>
+              </div>
+            }
+
+            <form [formGroup]="formLogin" (ngSubmit)="iniciarSesion()">
+              
+              <div class="mb-3">
+                <label class="form-label fw-bold text-secondary small">CORREO ELECTRÓNICO</label>
+                <div class="input-group shadow-sm">
+                  <span class="input-group-text bg-light border-end-0 text-muted px-3"><i class="bi bi-envelope"></i></span>
+                  <input type="email" formControlName="email" class="form-control bg-light border-start-0 py-2" placeholder="ejemplo@correo.com">
+                </div>
+                
+                <div class="text-danger mt-1 text-sm" [hidden]="email.valid || email.pristine">
+                  @if (email?.errors?.['required']) {
+                    <span class="small"><i class="bi bi-x-circle me-1"></i>Obligatorio</span>
+                  }
+                  @if (email?.errors?.['email']) {
+                    <span class="small"><i class="bi bi-x-circle me-1"></i>Formato no válido</span>
+                  }
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label fw-bold text-secondary small">CONTRASEÑA</label>
+                <div class="input-group shadow-sm">
+                  <span class="input-group-text bg-light border-end-0 text-muted px-3"><i class="bi bi-lock"></i></span>
+                  <input type="password" formControlName="password" class="form-control bg-light border-start-0 py-2" placeholder="••••••••">
+                </div>
+                
+                <div class="text-danger mt-1 text-sm" [hidden]="password.valid || password.pristine">
+                  @if (password?.errors?.['required']) {
+                    <span class="small"><i class="bi bi-x-circle me-1"></i>Obligatoria</span>
+                  }
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100 py-2 mb-4 shadow-sm" [disabled]="formLogin.invalid">
+                Entrar <i class="bi bi-arrow-right-circle ms-2"></i>
+              </button>
+              
+            </form>
+
+            <div class="text-center pt-3 border-top">
+              <p class="mb-0 text-muted small">¿No tienes cuenta? <a routerLink="/register" class="text-decoration-none fw-bold">Regístrate aquí</a></p>
+            </div>
+
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>
