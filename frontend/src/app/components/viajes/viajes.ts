@@ -49,9 +49,9 @@ export class Viajes implements OnInit {
         this.viajeParaCancelar = null;
         this.cdr.detectChanges();
       },
-      error: (err) => {
+      error: (error) => {
         this.mensajeError = 'No se pudo cancelar el viaje.';
-        console.error(err);
+        console.error(error);
         this.cdr.detectChanges();
       }
     });
@@ -72,10 +72,10 @@ export class Viajes implements OnInit {
         this.cargando = false;
         this.cdr.detectChanges();
       },
-      error: (err) => {
+      error: (error) => {
         this.cargando = false;
         this.mensajeError = 'No se han podido cargar tus viajes.';
-        console.error(err);
+        console.error(error);
         this.cdr.detectChanges();
       }
     })

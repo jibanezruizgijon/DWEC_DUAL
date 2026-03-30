@@ -9,19 +9,19 @@ import { Lugar } from '../interfaces/lugar';
 export class Lugares {
   private http = inject(HttpClient)
   private apiUrl = 'http://localhost:8000/api/lugares'
-  
+
   obtenerLugares(pagina: number = 1, busqueda: string = ''): Observable<any> {
     let parametros = new HttpParams().set('page', pagina);
-    
-   if (busqueda) {
+
+    if (busqueda) {
       parametros = parametros.set('buscar', busqueda);
     }
-    
+
     return this.http.get<any>(this.apiUrl, { params: parametros });
   }
 
-obtenerDatosInicio(): Observable<{parques: Lugar[], destacados: Lugar[]}> {
-  return this.http.get<{parques: Lugar[], destacados: Lugar[]}>(`http://localhost:8000/api/inicio-datos`); 
-}
+  obtenerDatosInicio(): Observable<{ parques: Lugar[], destacados: Lugar[] }> {
+    return this.http.get<{ parques: Lugar[], destacados: Lugar[] }>(`http://localhost:8000/api/inicio-datos`);
+  }
 
 }

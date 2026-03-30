@@ -5,7 +5,6 @@
       <div class="text-center mb-4">
         <i class="bi bi-person-plus text-primary display-4 mb-3 d-block"></i>
         <h3 class="fw-bold text-dark">Crear una cuenta</h3>
-        <p class="text-muted small">Únete a nosotros y empieza tu aventura</p>
       </div>
 
       @if (mensajeDeError) {
@@ -18,10 +17,10 @@
       <form [formGroup]="formRegistro" (ngSubmit)="registro()">
 
         <div class="mb-3">
-          <label class="form-label fw-bold text-secondary small">NOMBRE</label>
+          <label class="form-label fw-bold text-secondary small" for="input__nombre">NOMBRE</label>
           <div class="input-group shadow-sm">
             <span class="input-group-text bg-light border-end-0 text-muted px-3"><i class="bi bi-person"></i></span>
-            <input type="text" formControlName="name" class="form-control bg-light border-start-0 py-2" placeholder="Tu nombre completo">
+            <input type="text" formControlName="name" class="form-control bg-light border-start-0 py-2" id="input__nombre" placeholder="Tu nombre completo">
           </div>
           <div class="text-danger mt-1 text-sm" [hidden]="name.valid || name.pristine">
             @if (name?.errors?.['required']) {
@@ -31,10 +30,10 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label fw-bold text-secondary small">CORREO ELECTRÓNICO</label>
+          <label class="form-label fw-bold text-secondary small" for="input__correo">CORREO ELECTRÓNICO</label>
           <div class="input-group shadow-sm">
             <span class="input-group-text bg-light border-end-0 text-muted px-3"><i class="bi bi-envelope"></i></span>
-            <input type="email" formControlName="email" class="form-control bg-light border-start-0 py-2" placeholder="ejemplo@correo.com">
+            <input type="email" formControlName="email" class="form-control bg-light border-start-0 py-2" id="input__correo" placeholder="ejemplo@correo.com">
           </div>
           <div class="text-danger mt-1 text-sm" [hidden]="email.valid || email.pristine">
             @if (email?.errors?.['required']) {
@@ -47,10 +46,10 @@
         </div>
 
         <div class="mb-4">
-          <label class="form-label fw-bold text-secondary small">CONTRASEÑA</label>
+          <label class="form-label fw-bold text-secondary small" for="input__password" >CONTRASEÑA</label>
           <div class="input-group shadow-sm">
             <span class="input-group-text bg-light border-end-0 text-muted px-3"><i class="bi bi-lock"></i></span>
-            <input type="password" formControlName="password" class="form-control bg-light border-start-0 py-2" placeholder="••••••••">
+            <input type="password" formControlName="password" class="form-control bg-light border-start-0 py-2" id="input__password" placeholder="••••••••">
           </div>
           <div class="text-danger mt-1 text-sm" [hidden]="password.valid || password.pristine">
             @if (password?.errors?.['required']) {

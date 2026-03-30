@@ -16,10 +16,10 @@
 
 
 .card:hover {
-  background-color: #a2e5e4;
+  background-color: #7dddfc;
   transform: scale(1.1);
   transition: transform 0.3s ;
-  --bs-card-border-color: gray;
+  --bs-card-border-color: rgb(111, 128, 159);
 }
 
 .parques__container {

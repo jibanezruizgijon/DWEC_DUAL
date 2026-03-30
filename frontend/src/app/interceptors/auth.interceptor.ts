@@ -17,7 +17,7 @@ export class AuthInterceptor implements HttpInterceptor {
       });
     }
 
-    // Deja que la petición continúe su viaje hacia Laravel
+    // Envía la petición a Laravel con el token en el header
     return next.handle(request);
   }
 }

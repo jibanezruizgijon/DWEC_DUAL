@@ -17,7 +17,7 @@ Route::middleware('auth:sanctum', 'throttle:60,1')->group(function () {
         return $request->user();
     });
 
-    Route::apiResource('viajes', ViajeController::class)->only(['index', 'store', 'destroy']);
+    Route::apiResource('viajes', ViajeController::class)->only(['index', 'store', 'show', 'destroy']);
 
     Route::get('/lugares', function (Request $request) {
         $query = \App\Models\Lugar::query();
