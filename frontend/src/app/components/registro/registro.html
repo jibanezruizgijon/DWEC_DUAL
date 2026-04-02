@@ -23,7 +23,7 @@
             <input type="text" formControlName="name" class="form-control bg-light border-start-0 py-2" id="input__nombre" placeholder="Tu nombre completo">
           </div>
           <div class="text-danger mt-1 text-sm" [hidden]="name.valid || name.pristine">
-            @if (name?.errors?.['required']) {
+            @if (name.errors?.['required']) {
             <span class="small"><i class="bi bi-x-circle me-1"></i>Obligatorio</span>
             }
           </div>
@@ -36,10 +36,10 @@
             <input type="email" formControlName="email" class="form-control bg-light border-start-0 py-2" id="input__correo" placeholder="ejemplo@correo.com">
           </div>
           <div class="text-danger mt-1 text-sm" [hidden]="email.valid || email.pristine">
-            @if (email?.errors?.['required']) {
+            @if (email.errors?.['required']) {
             <span class="small"><i class="bi bi-x-circle me-1"></i>Obligatorio</span>
             }
-            @if (email?.errors?.['email']) {
+            @if (email.errors?.['email']) {
             <span class="small"><i class="bi bi-x-circle me-1"></i>Formato no válido</span>
             }
           </div>
@@ -52,10 +52,10 @@
             <input type="password" formControlName="password" class="form-control bg-light border-start-0 py-2" id="input__password" placeholder="••••••••">
           </div>
           <div class="text-danger mt-1 text-sm" [hidden]="password.valid || password.pristine">
-            @if (password?.errors?.['required']) {
+            @if (password.errors?.['required']) {
             <span class="small"><i class="bi bi-x-circle me-1"></i>Obligatoria</span>
             }
-            @if (password?.errors?.['minlength']) {
+            @if (password.errors?.['minlength']) {
             <span class="small"><i class="bi bi-x-circle me-1"></i>Mínimo 6 caracteres</span>
             }
           </div>

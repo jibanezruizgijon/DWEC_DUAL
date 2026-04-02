@@ -38,10 +38,10 @@
                 </div>
                 
                 <div class="text-danger mt-1" [hidden]="email.valid || email.pristine">
-                  @if (email?.errors?.['required']) {
+                  @if (email.errors?.['required']) {
                     <span class="small"><i class="bi bi-x-circle me-1"></i>Obligatorio</span>
                   }
-                  @if (email?.errors?.['email']) {
+                  @if (email.errors?.['email']) {
                     <span class="small"><i class="bi bi-x-circle me-1"></i>Formato no válido</span>
                   }
                 </div>
@@ -55,7 +55,7 @@
                 </div>
                 
                 <div class="text-danger mt-1 text-sm" [hidden]="password.valid || password.pristine">
-                  @if (password?.errors?.['required']) {
+                  @if (password.errors?.['required']) {
                     <span class="small"><i class="bi bi-x-circle me-1"></i>Obligatoria</span>
                   }
                 </div>

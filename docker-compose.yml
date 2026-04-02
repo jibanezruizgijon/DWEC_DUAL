@@ -1,0 +1,39 @@
+services:
+
+  db:
+    image: mariadb:10.11
+    container_name: agencia-db
+    restart: always
+    environment:
+      MYSQL_DATABASE: agencia_viajes
+      MYSQL_ROOT_PASSWORD: toor
+    volumes:
+      - db_data:/var/lib/mysql
+
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: agencia-api
+    command: php artisan serve --host=0.0.0.0 --port=8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/var/www/html
+    depends_on:
+      - db
+
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: agencia-web
+    ports:
+      - "80:80" 
+    depends_on:
+      - backend
+
+volumes:
+  db_data:

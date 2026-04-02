@@ -2,13 +2,13 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Lugar } from '../interfaces/lugar';
-
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class Lugares {
   private http = inject(HttpClient)
-  private apiUrl = 'http://localhost:8000/api/lugares'
+    private apiUrl = `${environment.apiUrl}/lugares`;
 
   obtenerLugares(pagina: number = 1, busqueda: string = ''): Observable<any> {
     let parametros = new HttpParams().set('page', pagina);
