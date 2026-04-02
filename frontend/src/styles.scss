@@ -1,2 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
-@import "bootstrap/dist/css/bootstrap.min.css";
+
+$primary: #0056b3;
+$body-bg: #f8f9fa; 
+
+$box-shadow-sm: 0 .125rem .25rem rgba(0, 0, 0, .04);
+$box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .08);
+
+$font-family-sans-serif: 'Montserrat', sans-serif;
+$enable-gradients: true;
+$input-padding-y: 1rem;
+
+@import "bootstrap/scss/bootstrap";
