@@ -49,7 +49,7 @@
     <div class="card flex-shrink-0 card__parque">
       <img [src]="parque.imagen_url" class="card-img-top img__parque" alt="Imagen de {{ parque.nombre }}">
       <div class="card-body text-center">
-        <h4 class="fw-bold mb-0">{{ parque.nombre }}</h4>
+        <h4 class="fw-bold">{{ parque.nombre }}</h4>
       </div>
     </div>
     }
@@ -61,7 +61,7 @@
   <div class="row">
     @for (v of destacados; track v.id) {
     <div class="col-md-4 mb-4">
-      <div class="card border-0 shadow-sm">
+      <div class="card shadow-sm">
         <div class="card-body">
           <h4 class="card-title fw-bold">{{ v.nombre }}</h4>
           <img [src]="v.imagen_url" class="card-img-top img__destacado" alt="{{ v.nombre }}">

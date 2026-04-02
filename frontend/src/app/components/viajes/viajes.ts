@@ -1,7 +1,6 @@
 import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { ViajesService } from '../../services/viajes.service';
 import { Viaje } from '../../interfaces/viaje';
-import { Lugar } from '../../interfaces/lugar';
 @Component({
   selector: 'app-viajes',
   standalone: false,

@@ -43,8 +43,8 @@
   </div>
 
   @if (lugares.length > 0 && ultimaPagina > 1) {
-  <nav class="mt-4">
-    <ul class="pagination justify-content-center shadow-sm">
+  <nav class="mt-4 ">
+    <ul class="pagination justify-content-center">
       <li class="page-item" [class.disabled]="paginaActual === 1">
         <button class="page-link" (click)="cambiarPagina(paginaActual - 1)">Anterior</button>
       </li>
@@ -64,11 +64,11 @@
 
 <div class="modal fade" id="modalNuevoViaje" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content border-0 shadow-lg">
+    <div class="modal-content  shadow-lg">
 
       @if (lugarSeleccionado) {
-      <div class="modal-header border-0 pb-0 z-1 position-relative">
-        <button type="button" class="btn-close bg-white rounded-circle p-2 shadow-sm" data-bs-dismiss="modal"
+      <div class="modal-header z-1 position-relative">
+        <button type="button" class="btn-close bg-white p-2" data-bs-dismiss="modal"
           aria-label="Close"></button>
       </div>
 
@@ -87,10 +87,6 @@
             {{ lugarSeleccionado.descripcion }}
           </p>
         </div>
-
-        <p class="text-muted mb-4">
-          Estás a un paso de comenzar tu aventura. Selecciona la fecha en la que deseas realizar el viaje.
-        </p>
 
         <div class="mb-3">
           <label class="form-label fw-bold"><i class="bi bi-calendar-event me-2 text-primary"></i>Fecha del Viaje</label>

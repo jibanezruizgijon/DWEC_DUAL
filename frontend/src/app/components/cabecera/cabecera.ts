@@ -12,8 +12,7 @@ export class Cabecera {
 
   public authService = inject(AuthService);
   private router = inject(Router);
-  public datosTiempo: any = null;
-
+  
   cerrarSesion() {
     this.authService.logout();
     this.router.navigate(['/login']);

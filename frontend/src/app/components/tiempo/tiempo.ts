@@ -64,6 +64,7 @@ buscarTiempo() {
       }
     });
   }
+  
  // Función para preparar los datos del gráfico
   cargarPrevision() {
     this.tiempoService.obtenerPrevision(this.ciudadBuscada).subscribe({

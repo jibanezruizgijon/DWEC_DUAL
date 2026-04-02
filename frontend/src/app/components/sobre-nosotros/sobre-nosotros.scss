@@ -8,3 +8,24 @@
     border-bottom-left-radius: 40px;
     border-bottom-right-radius: 40px;
 }
+
+.tarjeta-nosotros {
+    transition: transform 0.3s , box-shadow 0.3s;
+    cursor: default;
+
+
+    &:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important; 
+        
+        .contenedor-icono {
+            transform: scale(1.1); 
+        }
+    }
+}
+
+.icono {
+    width: 60px;
+    height: 60px;
+    transition: transform 0.3s;
+}

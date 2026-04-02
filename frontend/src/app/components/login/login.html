@@ -9,7 +9,7 @@
           
           <div class="position-absolute bottom-0 start-0 p-5 text-white">
             <h3 class="fw-bold mb-3">BIENVENIDO</h3>
-            <p class="mb-0 text-white-75">Tus próximos destinos te están esperando. Entra para gestionar tus reservas y descubrir nuevas aventuras.</p>
+            <p>Tus próximos destinos te están esperando. Entra para gestionar tus reservas y descubrir nuevas aventuras.</p>
           </div>
         </div>
 
@@ -19,7 +19,6 @@
             <div class="text-center mb-4">
               <i class="bi bi-person-circle text-primary display-4 mb-3 d-block"></i>
               <h3 class="fw-bold text-dark">Iniciar Sesión</h3>
-              <p class="text-muted small">Introduce tus credenciales para continuar</p>
             </div>
 
             @if (mensajeDeError) {
@@ -38,7 +37,7 @@
                   <input type="email" formControlName="email" class="form-control bg-light border-start-0 py-2" id="input__correo" placeholder="ejemplo@correo.com">
                 </div>
                 
-                <div class="text-danger mt-1 text-sm" [hidden]="email.valid || email.pristine">
+                <div class="text-danger mt-1" [hidden]="email.valid || email.pristine">
                   @if (email?.errors?.['required']) {
                     <span class="small"><i class="bi bi-x-circle me-1"></i>Obligatorio</span>
                   }
@@ -51,7 +50,7 @@
               <div class="mb-4">
                 <label class="form-label fw-bold text-secondary small" for="input__password" >CONTRASEÑA</label>
                 <div class="input-group shadow-sm">
-                  <span class="input-group-text bg-light border-end-0 text-muted px-3"><i class="bi bi-lock"></i></span>
+                  <span class="input-group-text bg-light border-end-0  px-3"><i class="bi bi-lock"></i></span>
                   <input type="password" formControlName="password" class="form-control bg-light border-start-0 py-2" id="input__password" placeholder="••••••••">
                 </div>
                 
