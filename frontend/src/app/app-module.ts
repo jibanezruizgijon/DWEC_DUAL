@@ -15,6 +15,7 @@ import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2
 import { Footer } from './components/footer/footer';
 import { SobreNosotros } from './components/sobre-nosotros/sobre-nosotros';
 import { NuevoViaje } from './components/nuevo-viaje/nuevo-viaje';
+import { EditarPerfil } from './components/editar-perfil/editar-perfil';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { NuevoViaje } from './components/nuevo-viaje/nuevo-viaje';
     Footer,
     SobreNosotros,
     NuevoViaje,
+    EditarPerfil,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, BaseChartDirective],
   providers: [

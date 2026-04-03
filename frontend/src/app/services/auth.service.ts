@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root',
@@ -34,6 +34,12 @@ export class AuthService {
   }
   registro(datos: any) {
     return this.http.post(`${this.apiUrl}/register`, datos);
+  }
+  obtenerPerfil(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/user`);
+  }
+  actualizarPerfil(email: string, datos: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/usuarios/actualizar/${email}`, datos);
   }
 
 }

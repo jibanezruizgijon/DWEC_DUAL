@@ -31,6 +31,8 @@ Route::middleware('auth:sanctum', 'throttle:60,1')->group(function () {
 
         return response()->json($query->paginate(12));
     });
+
+    Route::put('usuarios/actualizar/{email}', [AuthController::class, 'actualizarPerfil']);
 });
 
 

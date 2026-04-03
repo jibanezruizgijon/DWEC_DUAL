@@ -7,7 +7,7 @@ import { Tiempo } from './components/tiempo/tiempo';
 import { Inicio } from './components/inicio/inicio';
 import { SobreNosotros } from './components/sobre-nosotros/sobre-nosotros';
 import { NuevoViaje } from './components/nuevo-viaje/nuevo-viaje'; 
- 
+ import { EditarPerfil } from './components/editar-perfil/editar-perfil';
 const routes: Routes = [
   { path: 'login', component: Login },
   { path: 'register', component: Registro },
@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'tiempo', component: Tiempo },
   { path: 'nuevoViaje', component: NuevoViaje },
   { path: 'sobre-nosotros', component: SobreNosotros },
+  { path: 'editar-perfil', component: EditarPerfil },
   { path: '**', redirectTo: '/inicio', pathMatch: 'full' },
   { path: '', redirectTo: '/inicio', pathMatch: 'full' }
 ];

@@ -1,0 +1,85 @@
+<div class="row justify-content-center mt-5 mb-5">
+  <div class="col-md-8 col-lg-5">
+    <div class="card border-0 shadow-lg rounded-4 p-4 p-lg-5">
+
+      <div class="text-center mb-4">
+        <i class="bi bi-person-gear text-primary display-4 mb-3 d-block"></i>
+        <h3 class="fw-bold text-dark">Ajustes de Perfil</h3>
+      </div>
+
+      @if (mensajeDeError) {
+        <div class="alert alert-danger border-0 shadow-sm d-flex align-items-center">
+          <i class="bi bi-exclamation-triangle-fill me-2"></i>
+          <div>{{ mensajeDeError }}</div>
+        </div>
+      }
+      @if (mensajeExito) {
+        <div class="alert alert-success border-0 shadow-sm d-flex align-items-center">
+          <i class="bi bi-check-circle-fill me-2"></i>
+          <div>{{ mensajeExito }}</div>
+        </div>
+      }
+
+      @if (cargando) {
+        <div class="text-center py-4">
+          <div class="spinner-border text-primary" role="status"></div>
+          <p class="mt-2 text-muted">Cargando datos del perfil...</p>
+        </div>
+      } @else {
+
+        <form [formGroup]="formEditar" (ngSubmit)="guardarCambios()">
+
+          <div class="mb-3">
+            <label class="form-label fw-bold text-secondary small" for="input__correo">CORREO ELECTRÓNICO</label>
+            <div class="input-group shadow-sm">
+              <span class="input-group-text bg-light border-end-0 px-3"><i class="bi bi-envelope"></i></span>
+              <input type="email" formControlName="email" class="form-control bg-light border-start-0 py-2 text-muted" id="input__correo">
+            </div>
+            <div class="form-text small">El correo electrónico no se puede modificar.</div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold text-secondary small" for="input__nombre">NOMBRE</label>
+            <div class="input-group shadow-sm">
+              <span class="input-group-text bg-light border-end-0 px-3"><i class="bi bi-person"></i></span>
+              <input type="text" formControlName="name" class="form-control bg-light border-start-0 py-2" id="input__nombre" placeholder="Tu nombre">
+            </div>
+            <div class="text-danger mt-1 text-sm" [hidden]="name.valid || name.pristine">
+              @if (name.errors?.['required']) {
+                <span class="small"><i class="bi bi-x-circle me-1"></i>Obligatorio</span>
+              }
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-bold text-secondary small" for="input__password">NUEVA CONTRASEÑA</label>
+            <div class="input-group shadow-sm">
+              <span class="input-group-text bg-light border-end-0 px-3"><i class="bi bi-lock"></i></span>
+              <input type="password" formControlName="password" class="form-control bg-light border-start-0 py-2" id="input__password" placeholder="Dejar en blanco para no cambiarla">
+            </div>
+            <div class="text-danger mt-1 text-sm" [hidden]="password.valid || password.pristine">
+              @if (password.errors?.['minlength']) {
+                <span class="small"><i class="bi bi-x-circle me-1"></i>Mínimo 6 caracteres</span>
+              }
+            </div>
+          </div>
+
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4 border-top pt-4">
+            <button type="button" class="btn btn-outline-secondary me-md-2 shadow-sm" routerLink="/inicio">
+              Cancelar
+            </button>
+            <button type="submit" class="btn btn-primary shadow-sm" [disabled]="formEditar.invalid || guardando">
+              @if (guardando) {
+                <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Guardando...
+              } @else {
+                Guardar Cambios <i class="bi bi-save ms-2"></i>
+              }
+            </button>
+          </div>
+
+        </form>
+
+      }
+    </div>
+  </div>
+</div>
