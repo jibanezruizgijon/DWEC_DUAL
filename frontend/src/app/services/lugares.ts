@@ -21,7 +21,7 @@ export class Lugares {
   }
 
   obtenerDatosInicio(): Observable<{ parques: Lugar[], destacados: Lugar[] }> {
-    return this.http.get<{ parques: Lugar[], destacados: Lugar[] }>(`http://localhost:8000/api/inicio-datos`);
+    return this.http.get<{ parques: Lugar[], destacados: Lugar[] }>(`${environment.apiUrl}/inicio-datos`);
   }
 
 }
