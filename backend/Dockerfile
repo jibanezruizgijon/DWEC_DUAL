@@ -1,6 +1,6 @@
 FROM php:8.4-fpm
 
-# Instalar dependencias del sistema
+# Instala las dependencias del sistema
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev
 
-# Instalar extensiones de PHP necesarias para Laravel
+# Instala las extensiones de PHP 
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
 # Instalar Composer
@@ -21,11 +21,11 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/html
 COPY . .
 
-# ARREGLO DE PERMISOS: Crucial para evitar el Error 500
+# Permisos
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache && \
     chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Exponemos el puerto que realmente usas en el compose
+# Puerto que se usa para el servidor
 EXPOSE 8001
 
 # Comando para arrancar el servidor interno de Laravel
